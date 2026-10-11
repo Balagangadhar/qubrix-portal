@@ -1,0 +1,6 @@
+/* Qubrix App styles */
+@media (max-width: 768px) {
+  .content-section {
+    padding: 0 16px;
+  }
+}

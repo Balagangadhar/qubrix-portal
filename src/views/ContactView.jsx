@@ -3,200 +3,208 @@ import {
   Send, 
   CheckCircle2, 
   Sparkles, 
-  MessageSquare, 
-  Briefcase, 
-  GraduationCap, 
+  Calendar, 
   Mail, 
   MapPin, 
   Clock, 
+  ShieldCheck, 
   ChevronDown, 
   ChevronUp,
-  ShieldCheck,
-  Calendar
+  Globe,
+  Smartphone,
+  Cpu,
+  Layers,
+  FileText,
+  User,
+  ArrowRight
 } from 'lucide-react';
-import { COURSES } from '../data/coursesData';
-import { INSTRUCTORS } from '../data/instructorsData';
+import { LEADERSHIP } from '../data/leadershipData';
 
-export default function ContactView({ selectedCourseForEnrollment }) {
-  const [activeTab, setActiveTab] = useState(selectedCourseForEnrollment ? 'academy' : 'studio');
-  const [submittedData, setSubmittedData] = useState(null);
+export default function ContactView({ selectedScopeForBooking }) {
+  const [activeTab, setActiveTab] = useState('book'); // 'book' | 'rfp'
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
 
-  // Studio Form State
-  const [studioForm, setStudioForm] = useState({
+  // Booking Form State
+  const [bookingForm, setBookingForm] = useState({
     name: '',
     email: '',
     company: '',
-    category: 'Agentic AI & Custom LLMs',
-    budget: '₹2,50,000 - ₹5,00,000',
-    timeline: '8 - 12 Weeks',
-    details: ''
+    consultingDomain: 'Web Application Consulting',
+    preferredConsultant: 'Both Bala & Srikanth (Recommended)',
+    preferredDate: '',
+    preferredTime: '10:00 AM IST / 12:30 PM EST',
+    projectScope: ''
   });
 
-  // Academy Form State
-  const [academyForm, setAcademyForm] = useState({
+  // RFP Form State
+  const [rfpForm, setRfpForm] = useState({
     name: '',
     email: '',
-    course: selectedCourseForEnrollment || 'Agentic AI Engineering',
-    experience: 'Mid-Level Engineer (2-5 yrs)',
-    mentor: 'Bala (JPMorganChase)',
-    goals: ''
+    company: '',
+    budgetRange: '$15,000 - $35,000',
+    targetTimeline: '6 - 8 Weeks (Fast-Track MVP)',
+    technicalStack: 'Next.js 15, React 19, LangGraph AI',
+    rfpDetails: '',
+    needNDA: true
   });
 
+  // Pre-fill from ScopeView if provided
   useEffect(() => {
-    if (selectedCourseForEnrollment) {
-      setActiveTab('academy');
-      setAcademyForm(prev => ({ ...prev, course: selectedCourseForEnrollment }));
+    if (selectedScopeForBooking) {
+      setBookingForm(prev => ({
+        ...prev,
+        consultingDomain: selectedScopeForBooking.domain || prev.consultingDomain,
+        company: selectedScopeForBooking.company || prev.company,
+        email: selectedScopeForBooking.email || prev.email,
+        projectScope: selectedScopeForBooking.notes 
+          ? `[Pre-configured Scope: ${selectedScopeForBooking.engagement} (${selectedScopeForBooking.duration})] - ${selectedScopeForBooking.notes}`
+          : `[Pre-configured Scope: ${selectedScopeForBooking.engagement} (${selectedScopeForBooking.duration})]`
+      }));
     }
-  }, [selectedCourseForEnrollment]);
+  }, [selectedScopeForBooking]);
 
   // FAQ Accordion State
   const [openFaq, setOpenFaq] = useState(null);
-
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);
   };
 
-  const handleStudioSubmit = (e) => {
+  const handleBookingSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmittedData({
-        type: 'studio',
-        ticketId: `QBX-STUDIO-${Math.floor(100000 + Math.random() * 900000)}`,
-        data: studioForm
+        type: 'booking',
+        ticketId: `QBX-CONSULT-${Math.floor(100000 + Math.random() * 900000)}`,
+        data: bookingForm
       });
     }, 600);
   };
 
-  const handleAcademySubmit = (e) => {
+  const handleRfpSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmittedData({
-        type: 'academy',
-        ticketId: `QBX-ACADEMY-${Math.floor(100000 + Math.random() * 900000)}`,
-        data: academyForm
+        type: 'rfp',
+        ticketId: `QBX-RFP-${Math.floor(100000 + Math.random() * 900000)}`,
+        data: rfpForm
       });
     }, 600);
   };
 
   const faqs = [
     {
-      q: 'How does Qubrix Studio onboard and deliver client projects?',
-      a: 'We initiate every partnership with a 1-week Architectural Blueprint sprint. We define API contracts, schemas, and interactive spatial prototypes before writing production code. Work is delivered via continuous 2-week CI/CD cycles.'
+      q: 'How does an initial consultation with Qubrix work?',
+      a: 'We schedule a focused 45-minute architectural discovery session directly with Bala and/or Srikanth. We discuss your business objectives, current tech stack, performance or scale challenges, and target milestones. Within 24 hours, we deliver a written Architectural Scope Blueprint.'
     },
     {
-      q: 'What is the schedule and time commitment for Qubrix Academy cohorts?',
-      a: 'Courses run part-time across 8 to 12 weeks. They feature 4 hours of live practitioner labs on weekends (led by Bala and Srikanth) along with asynchronous project clinics and peer code reviews.'
+      q: 'Will I speak directly with Bala and Srikanth or a sales rep?',
+      a: 'You speak directly with Bala (Lead Cloud & Systems Architect, 14+ yrs at JPMorganChase) and Srikanth (Principal Digital Architect, 14+ yrs at Evoke Technologies). We do not employ sales reps or account gatekeepers.'
     },
     {
-      q: 'Do I need a quantum computer or specialized hardware to learn Quantum Computing?',
-      a: 'Not at all. In Srikanth’s Quantum Information track, all simulations and Qiskit circuits run in our interactive browser sandbox and IBM Quantum Cloud remote simulators.'
+      q: 'Do you execute mutual Non-Disclosure Agreements (NDAs)?',
+      a: 'Yes, absolutely. We treat all client architectures, proprietary data, and product ideas with institutional-grade confidentiality. We are happy to execute your standard mutual NDA prior to discovery calls.'
     },
     {
-      q: 'Can our enterprise sponsor team upskilling or request a custom workshop?',
-      a: 'Yes. We provide bespoke enterprise cohorts in Agentic AI, Cloud Architecture, and Post-Quantum Cryptography for engineering teams with dedicated SLA support.'
+      q: 'What engagement models do you support?',
+      a: 'We offer three flexible models: 1) Architecture Blueprint Sprints (2-3 weeks for audits & specs), 2) Rapid MVP / Production Pods (6-8 weeks end-to-end builds), and 3) Enterprise Transformation Retainers (12-16 weeks for high-throughput platforms).'
+    },
+    {
+      q: 'What happens to the code and intellectual property (IP)?',
+      a: 'You retain 100% full ownership of all code, schemas, architecture diagrams, and intellectual property. Everything is committed directly into your private GitHub/GitLab repositories with complete CI/CD pipelines from Day 1.'
     }
   ];
 
   return (
-    <div style={{ paddingTop: '40px' }}>
+    <div style={{ paddingTop: '36px', paddingBottom: '90px' }}>
+      
       {/* Header */}
       <section className="content-section" style={{ textAlign: 'center', marginBottom: '50px' }}>
-        <div className="badge-pill badge-cyan" style={{ marginBottom: '16px' }}>
-          <MessageSquare size={14} />
-          INITIATE CONTACT
+        <div className="badge-pill badge-cyan" style={{ marginBottom: '14px' }}>
+          <Calendar size={14} />
+          STRATEGIC CONSULTATION & SCOPE INTAKE
         </div>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', marginBottom: '18px' }}>
-          Let’s Build <span className="gradient-text">Together</span>
+        <h1 style={{ fontSize: 'clamp(2.3rem, 5vw, 4rem)', marginBottom: '18px', letterSpacing: '-0.02em' }}>
+          Consult With Our <span className="gradient-text">Principal Architects</span>
         </h1>
-        <p style={{ color: '#94a3b8', maxWidth: '680px', margin: '0 auto', fontSize: '1.1rem', lineHeight: 1.6 }}>
-          Whether you want to build a breakthrough digital product or upskill your engineering capabilities,
-          our team is ready.
+        <p style={{ color: 'var(--text-muted)', maxWidth: '760px', margin: '0 auto', fontSize: '1.12rem', lineHeight: 1.6 }}>
+          Connect directly with Bala and Srikanth to discuss your Web Application, Mobile Engineering, or Enterprise AI requirements. 
+          Receive an actionable technical blueprint within 24 hours.
         </p>
 
         {/* Tab Switcher */}
-        <div
-          style={{
-            display: 'inline-flex',
-            padding: '6px',
-            borderRadius: '999px',
-            background: 'rgba(255, 255, 255, 0.04)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            marginTop: '36px'
-          }}
-        >
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '30px' }}>
           <button
-            onClick={() => { setActiveTab('studio'); setSubmittedData(null); }}
+            onClick={() => { setActiveTab('book'); setSubmittedData(null); }}
             style={{
-              padding: '10px 24px',
+              padding: '12px 24px',
               borderRadius: '999px',
-              border: 'none',
-              background: activeTab === 'studio' ? 'linear-gradient(135deg, #00f2fe, #38bdf8)' : 'transparent',
-              color: activeTab === 'studio' ? '#030014' : '#cbd5e1',
+              background: activeTab === 'book' ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.04)',
+              border: activeTab === 'book' ? '1px solid var(--cyan-core)' : '1px solid var(--border-glass)',
+              color: activeTab === 'book' ? 'var(--cyan-core)' : 'var(--text-muted)',
+              fontSize: '0.92rem',
               fontWeight: 700,
-              fontSize: '0.9rem',
-              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              transition: 'all 0.25s'
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
             }}
           >
-            <Briefcase size={16} />
-            Hire Qubrix Studio
+            <Calendar size={16} />
+            <span>Schedule 1-on-1 Consultation</span>
           </button>
 
           <button
-            onClick={() => { setActiveTab('academy'); setSubmittedData(null); }}
+            onClick={() => { setActiveTab('rfp'); setSubmittedData(null); }}
             style={{
-              padding: '10px 24px',
+              padding: '12px 24px',
               borderRadius: '999px',
-              border: 'none',
-              background: activeTab === 'academy' ? 'linear-gradient(135deg, #7928ca, #c084fc)' : 'transparent',
-              color: activeTab === 'academy' ? '#ffffff' : '#cbd5e1',
+              background: activeTab === 'rfp' ? 'rgba(168, 85, 247, 0.15)' : 'rgba(255, 255, 255, 0.04)',
+              border: activeTab === 'rfp' ? '1px solid var(--violet-glow)' : '1px solid var(--border-glass)',
+              color: activeTab === 'rfp' ? 'var(--purple-accent)' : 'var(--text-muted)',
+              fontSize: '0.92rem',
               fontWeight: 700,
-              fontSize: '0.9rem',
-              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              transition: 'all 0.25s'
+              cursor: 'pointer',
+              transition: 'all 0.2s ease'
             }}
           >
-            <GraduationCap size={16} />
-            Enroll in Qubrix Academy
+            <FileText size={16} />
+            <span>Submit Detailed Project RFP</span>
           </button>
         </div>
       </section>
 
       {/* Main Form Section */}
       <section className="content-section" style={{ marginBottom: '90px' }}>
-        <div
-          className="glass-panel"
-          style={{
-            maxWidth: '820px',
-            margin: '0 auto',
-            padding: '44px',
-            borderRadius: '24px',
-            border: activeTab === 'studio' ? '1px solid rgba(0, 242, 254, 0.35)' : '1px solid rgba(168, 85, 247, 0.35)',
-            background: 'linear-gradient(135deg, rgba(8, 12, 38, 0.95) 0%, rgba(14, 18, 52, 0.9) 100%)',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
-          }}
-        >
+        <div style={{ maxWidth: '880px', margin: '0 auto' }}>
+          
           {submittedData ? (
-            /* Submission Confirmation Card */
-            <div style={{ textAlign: 'center', padding: '30px 10px' }}>
+            /* Success Confirmation Box */
+            <div
+              className="glass-panel"
+              style={{
+                padding: '48px',
+                borderRadius: '28px',
+                border: '2px solid #10b981',
+                background: 'linear-gradient(135deg, rgba(8, 11, 35, 0.95) 0%, rgba(14, 38, 25, 0.85) 100%)',
+                textAlign: 'center'
+              }}
+            >
               <div
                 style={{
-                  width: '68px',
-                  height: '68px',
+                  width: '64px',
+                  height: '64px',
                   borderRadius: '50%',
-                  background: 'rgba(16, 185, 129, 0.15)',
-                  border: '1px solid #10b981',
+                  background: 'rgba(16, 185, 129, 0.2)',
+                  border: '2px solid #10b981',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -206,468 +214,480 @@ export default function ContactView({ selectedCourseForEnrollment }) {
                 <CheckCircle2 size={36} color="#10b981" />
               </div>
 
-              <span className="badge-pill badge-cyan" style={{ marginBottom: '12px', fontSize: '0.74rem' }}>
-                Enquiry Successfully Logged
-              </span>
-
-              <h2 style={{ fontSize: '2rem', marginBottom: '10px' }}>
-                Thank You, {submittedData.data.name}!
+              <h2 style={{ fontSize: '2rem', marginBottom: '12px', color: '#f8fafc' }}>
+                Consultation Request Received!
               </h2>
 
-              <p style={{ color: '#94a3b8', fontSize: '0.96rem', maxWidth: '540px', margin: '0 auto 24px auto', lineHeight: 1.6 }}>
-                Your enquiry ticket has been generated and dispatched to our lead engineering review team.
-                We typically respond with a technical brief within 24 hours.
+              <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto 24px auto', lineHeight: 1.6 }}>
+                Your request has been routed directly to <strong style={{ color: '#fff' }}>Bala & Srikanth</strong>. 
+                Our team will review your requirement brief and follow up with a calendar invitation and initial architectural considerations within 24 hours.
               </p>
 
               <div
                 style={{
-                  padding: '20px',
-                  borderRadius: '14px',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  maxWidth: '500px',
-                  margin: '0 auto 30px auto',
-                  textAlign: 'left',
+                  display: 'inline-block',
+                  padding: '12px 24px',
+                  borderRadius: '12px',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  border: '1px solid var(--border-glass)',
                   fontFamily: 'var(--font-mono)',
-                  fontSize: '0.84rem'
+                  fontSize: '0.9rem',
+                  color: 'var(--cyan-core)',
+                  marginBottom: '32px'
                 }}
               >
-                <div style={{ color: '#64748b', marginBottom: '6px' }}>DISPATCH TELEMETRY:</div>
-                <div style={{ color: '#00f2fe' }}>Ticket Reference: {submittedData.ticketId}</div>
-                <div style={{ color: '#cbd5e1' }}>Track: {submittedData.type === 'studio' ? submittedData.data.category : submittedData.data.course}</div>
-                <div style={{ color: '#cbd5e1' }}>Contact: {submittedData.data.email}</div>
-                <div style={{ color: '#10b981', marginTop: '6px' }}>Status: Awaiting Architect Review</div>
+                Consultation Ticket Ref: <strong>{submittedData.ticketId}</strong>
               </div>
 
-              <button
-                onClick={() => setSubmittedData(null)}
-                className="btn-secondary"
-                style={{ fontSize: '0.88rem' }}
-              >
-                Submit Another Request
-              </button>
-            </div>
-          ) : activeTab === 'studio' ? (
-            /* Studio Project Enquiry Form */
-            <form onSubmit={handleStudioSubmit}>
-              <div style={{ marginBottom: '28px' }}>
-                <h3 style={{ fontSize: '1.6rem', marginBottom: '8px' }}>
-                  Commission Qubrix Studio
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.92rem' }}>
-                  Tell us about your project ambitions, required tech stacks, and delivery timeline.
-                </p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={studioForm.name}
-                    onChange={(e) => setStudioForm({ ...studioForm, name: e.target.value })}
-                    placeholder="e.g. Alex Morgan"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Corporate / Work Email *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={studioForm.email}
-                    onChange={(e) => setStudioForm({ ...studioForm, email: e.target.value })}
-                    placeholder="alex@enterprise.com"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Company / Organization
-                  </label>
-                  <input
-                    type="text"
-                    value={studioForm.company}
-                    onChange={(e) => setStudioForm({ ...studioForm, company: e.target.value })}
-                    placeholder="e.g. Quantum Dynamics Inc."
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Project Category
-                  </label>
-                  <select
-                    value={studioForm.category}
-                    onChange={(e) => setStudioForm({ ...studioForm, category: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(7, 10, 30, 0.9)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  >
-                    <option>Agentic AI & Custom LLMs</option>
-                    <option>Full-Stack Cloud Architecture</option>
-                    <option>Spatial UI/UX & Design Systems</option>
-                    <option>Cross-Platform Mobile Engineering</option>
-                    <option>Quantum Computing Advisory & R&D</option>
-                  </select>
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Estimated Budget Bracket
-                  </label>
-                  <select
-                    value={studioForm.budget}
-                    onChange={(e) => setStudioForm({ ...studioForm, budget: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(7, 10, 30, 0.9)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  >
-                    <option>₹1,50,000 - ₹3,50,000 (Sprint MVP)</option>
-                    <option>₹3,50,000 - ₹8,00,000 (Growth Platform)</option>
-                    <option>₹8,00,000 - ₹20,00,000+ (Enterprise Multi-Agent / System)</option>
-                    <option>Flexible / Exploratory Advisory (INR)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Target Launch Window
-                  </label>
-                  <select
-                    value={studioForm.timeline}
-                    onChange={(e) => setStudioForm({ ...studioForm, timeline: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(7, 10, 30, 0.9)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  >
-                    <option>4 - 6 Weeks (Fast Track)</option>
-                    <option>8 - 12 Weeks (Standard Sprint)</option>
-                    <option>3 - 6 Months (Multi-Phase Architecture)</option>
-                    <option>Next Quarter</option>
-                  </select>
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '28px' }}>
-                <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                  Project Specifications & Goals
-                </label>
-                <textarea
-                  rows="4"
-                  value={studioForm.details}
-                  onChange={(e) => setStudioForm({ ...studioForm, details: e.target.value })}
-                  placeholder="Describe your vision, core user flows, integrations, or challenges you're looking to solve..."
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#fff',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    resize: 'vertical'
-                  }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-primary"
-                style={{ width: '100%', padding: '16px', fontSize: '1rem', justifyContent: 'center' }}
-              >
-                {isSubmitting ? 'Transmitting Specs...' : 'Submit Studio Enquiry'}
-                <Send size={16} />
-              </button>
-            </form>
-          ) : (
-            /* Academy Enrollment Form */
-            <form onSubmit={handleAcademySubmit}>
-              <div style={{ marginBottom: '28px' }}>
-                <h3 style={{ fontSize: '1.6rem', marginBottom: '8px' }}>
-                  Enroll in Qubrix Academy
-                </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.92rem' }}>
-                  Reserve your seat for upcoming practitioner-led cohorts authored by Bala & Srikanth.
-                </p>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={academyForm.name}
-                    onChange={(e) => setAcademyForm({ ...academyForm, name: e.target.value })}
-                    placeholder="e.g. Priya Sharma"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={academyForm.email}
-                    onChange={(e) => setAcademyForm({ ...academyForm, email: e.target.value })}
-                    placeholder="priya@domain.com"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  />
-                </div>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '20px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Select Course Track
-                  </label>
-                  <select
-                    value={academyForm.course}
-                    onChange={(e) => setAcademyForm({ ...academyForm, course: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(7, 10, 30, 0.9)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  >
-                    {COURSES.map(c => (
-                      <option key={c.id} value={c.title}>{c.title} ({c.duration})</option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                    Current Technical Background
-                  </label>
-                  <select
-                    value={academyForm.experience}
-                    onChange={(e) => setAcademyForm({ ...academyForm, experience: e.target.value })}
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: 'rgba(7, 10, 30, 0.9)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#fff',
-                      fontSize: '0.9rem',
-                      outline: 'none'
-                    }}
-                  >
-                    <option>Frontend / React Developer</option>
-                    <option>Backend / Systems Engineer</option>
-                    <option>Full-Stack Software Engineer (3+ yrs)</option>
-                    <option>Tech Lead / Engineering Manager</option>
-                    <option>Computer Science Graduate / Student</option>
-                  </select>
-                </div>
-              </div>
-
-              <div style={{ marginBottom: '20px' }}>
-                <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                  Mentor & Practitioner Preference
-                </label>
-                <select
-                  value={academyForm.mentor}
-                  onChange={(e) => setAcademyForm({ ...academyForm, mentor: e.target.value })}
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(7, 10, 30, 0.9)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#fff',
-                    fontSize: '0.9rem',
-                    outline: 'none'
-                  }}
-                >
-                  <option>Bala (JPMorganChase — Cloud & Agentic Systems)</option>
-                  <option>Srikanth (Evoke Technologies — Quantum & Enterprise Web)</option>
-                  <option>General Cohort Allocation</option>
-                </select>
-              </div>
-
-              <div style={{ marginBottom: '28px' }}>
-                <label style={{ display: 'block', fontSize: '0.84rem', color: '#cbd5e1', marginBottom: '8px', fontWeight: 600 }}>
-                  What is your primary learning goal?
-                </label>
-                <textarea
-                  rows="3"
-                  value={academyForm.goals}
-                  onChange={(e) => setAcademyForm({ ...academyForm, goals: e.target.value })}
-                  placeholder="e.g. Want to build production multi-agent systems at my company, pivot to AI engineering..."
-                  style={{
-                    width: '100%',
-                    padding: '14px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#fff',
-                    fontSize: '0.9rem',
-                    outline: 'none',
-                    resize: 'vertical'
-                  }}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-primary"
-                style={{ width: '100%', padding: '16px', fontSize: '1rem', justifyContent: 'center' }}
-              >
-                {isSubmitting ? 'Registering Seat...' : 'Register for Next Cohort'}
-                <Send size={16} />
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
-
-      {/* Frequently Asked Questions */}
-      <section className="content-section" style={{ marginBottom: '80px', maxWidth: '820px', margin: '0 auto 80px auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '36px' }}>
-          <h2 style={{ fontSize: '2rem', marginBottom: '10px' }}>Frequently Asked Questions</h2>
-          <p style={{ color: '#94a3b8', fontSize: '0.95rem' }}>
-            Everything you need to know about working with Qubrix.
-          </p>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaq === idx;
-            return (
-              <div
-                key={idx}
-                className="glass-panel"
-                style={{
-                  borderRadius: '14px',
-                  overflow: 'hidden',
-                  border: isOpen ? '1px solid rgba(0, 242, 254, 0.4)' : '1px solid rgba(255, 255, 255, 0.08)'
-                }}
-              >
+              <div>
                 <button
-                  onClick={() => toggleFaq(idx)}
-                  style={{
-                    width: '100%',
-                    padding: '18px 22px',
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#fff',
-                    textAlign: 'left',
-                    fontSize: '0.95rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between'
-                  }}
+                  onClick={() => setSubmittedData(null)}
+                  className="btn-secondary"
+                  style={{ padding: '12px 24px', fontSize: '0.9rem' }}
                 >
-                  <span>{faq.q}</span>
-                  {isOpen ? <ChevronUp size={18} color="#00f2fe" /> : <ChevronDown size={18} color="#94a3b8" />}
+                  Submit Another Consultation Request
                 </button>
-
-                {isOpen && (
-                  <div style={{ padding: '0 22px 20px 22px', color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6 }}>
-                    {faq.a}
-                  </div>
-                )}
               </div>
-            );
-          })}
+            </div>
+          ) : (
+            /* Interactive Forms */
+            <div
+              className="glass-panel"
+              style={{
+                padding: '44px',
+                borderRadius: '28px',
+                border: '1px solid var(--border-glow)',
+                background: 'linear-gradient(135deg, rgba(8, 11, 35, 0.95) 0%, rgba(18, 24, 62, 0.85) 100%)'
+              }}
+            >
+              {activeTab === 'book' ? (
+                /* TAB 1: 1-on-1 Consultation Booking Form */
+                <form onSubmit={handleBookingSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Your Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Doe / Jane Smith"
+                        value={bookingForm.name}
+                        onChange={(e) => setBookingForm({ ...bookingForm, name: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Work Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="founder@company.com"
+                        value={bookingForm.email}
+                        onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Company / Organization
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Acme Global / Stealth AI"
+                        value={bookingForm.company}
+                        onChange={(e) => setBookingForm({ ...bookingForm, company: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Consulting Domain Focus
+                      </label>
+                      <select
+                        value={bookingForm.consultingDomain}
+                        onChange={(e) => setBookingForm({ ...bookingForm, consultingDomain: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: '#0b0e29',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      >
+                        <option value="Web Application Consulting">Web Application Consulting & Architecture</option>
+                        <option value="Mobile Application Engineering">Mobile Application Engineering (iOS/Android)</option>
+                        <option value="Enterprise AI Enablement">Enterprise AI Enablement & Multi-Agent Swarms</option>
+                        <option value="Full-Stack Digital Transformation">Unified Web + Mobile + AI Ecosystem</option>
+                        <option value="Architecture Audit & Scalability">Cloud Architecture & Security Audit</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Preferred Principal Consultant
+                      </label>
+                      <select
+                        value={bookingForm.preferredConsultant}
+                        onChange={(e) => setBookingForm({ ...bookingForm, preferredConsultant: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: '#0b0e29',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      >
+                        <option value="Both Bala & Srikanth (Recommended)">Both Bala & Srikanth (Full Architecture + AI Pod)</option>
+                        <option value="Bala (Lead Cloud Architect, JPMorganChase)">Bala — Lead Cloud & Distributed Systems Architect</option>
+                        <option value="Srikanth (Principal AI & Digital Solutions, Evoke)">Srikanth — Principal Mobile & AI Solutions Architect</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Preferred Meeting Time Window
+                      </label>
+                      <select
+                        value={bookingForm.preferredTime}
+                        onChange={(e) => setBookingForm({ ...bookingForm, preferredTime: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: '#0b0e29',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      >
+                        <option value="Morning: 10:00 AM IST / 12:30 PM EST">Morning: 10:00 AM IST / 12:30 PM EST</option>
+                        <option value="Afternoon: 2:30 PM IST / 5:00 AM EST">Afternoon: 2:30 PM IST / 5:00 AM EST</option>
+                        <option value="Evening: 6:30 PM IST / 9:00 AM EST">Evening: 6:30 PM IST / 9:00 AM EST</option>
+                        <option value="US Eastern Hours: 8:00 PM IST / 10:30 AM EST">US Eastern Hours: 8:00 PM IST / 10:30 AM EST</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                      Project Requirements & Current Technical Challenges
+                    </label>
+                    <textarea
+                      rows={4}
+                      placeholder="Tell us about the digital product you're building, your target release date, current tech stack, or scaling hurdles..."
+                      value={bookingForm.projectScope}
+                      onChange={(e) => setBookingForm({ ...bookingForm, projectScope: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '14px 16px',
+                        borderRadius: '12px',
+                        background: 'rgba(255, 255, 255, 0.04)',
+                        border: '1px solid var(--border-glass)',
+                        color: 'var(--text-main)',
+                        fontSize: '0.92rem',
+                        outline: 'none',
+                        resize: 'vertical'
+                      }}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary"
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: '1rem',
+                      justifyContent: 'center',
+                      opacity: isSubmitting ? 0.7 : 1
+                    }}
+                  >
+                    {isSubmitting ? (
+                      <span>Scheduling Strategy Call...</span>
+                    ) : (
+                      <>
+                        <span>Confirm Consultation with Bala & Srikanth</span>
+                        <ArrowRight size={16} />
+                      </>
+                    )}
+                  </button>
+
+                  <div style={{ textAlign: 'center', fontSize: '0.78rem', color: 'var(--text-dim)' }}>
+                    🔒 100% Confidential • Direct Principal Architect Discussion • No Sales Pitch
+                  </div>
+                </form>
+              ) : (
+                /* TAB 2: Detailed Project RFP Submission Form */
+                <form onSubmit={handleRfpSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Your Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="John Doe"
+                        value={rfpForm.name}
+                        onChange={(e) => setRfpForm({ ...rfpForm, name: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Work Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="executive@enterprise.com"
+                        value={rfpForm.email}
+                        onChange={(e) => setRfpForm({ ...rfpForm, email: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Estimated Budget Range
+                      </label>
+                      <select
+                        value={rfpForm.budgetRange}
+                        onChange={(e) => setRfpForm({ ...rfpForm, budgetRange: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: '#0b0e29',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      >
+                        <option value="$10,000 - $25,000">$10,000 - $25,000 (Architecture Audit / PoC)</option>
+                        <option value="$25,000 - $60,000">$25,000 - $60,000 (Full-Feature Web / Mobile MVP)</option>
+                        <option value="$60,000 - $120,000">$60,000 - $120,000 (Enterprise Multi-Agent AI System)</option>
+                        <option value="$120,000+">$120,000+ (Comprehensive Digital Transformation)</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                        Target Delivery Timeline
+                      </label>
+                      <select
+                        value={rfpForm.targetTimeline}
+                        onChange={(e) => setRfpForm({ ...rfpForm, targetTimeline: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '12px 16px',
+                          borderRadius: '12px',
+                          background: '#0b0e29',
+                          border: '1px solid var(--border-glass)',
+                          color: 'var(--text-main)',
+                          fontSize: '0.92rem',
+                          outline: 'none'
+                        }}
+                      >
+                        <option value="2 - 3 Weeks (Diagnostic Sprint)">2 - 3 Weeks (Diagnostic Architecture Sprint)</option>
+                        <option value="6 - 8 Weeks (Fast-Track MVP)">6 - 8 Weeks (Fast-Track Production MVP)</option>
+                        <option value="12 - 16 Weeks (Enterprise Overhaul)">12 - 16 Weeks (Enterprise Overhaul)</option>
+                        <option value="Ongoing Strategic Advisory">Ongoing Strategic Fractional Architecture Retainer</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
+                      Detailed Project Scope / Architecture Requirements
+                    </label>
+                    <textarea
+                      rows={5}
+                      required
+                      placeholder="Please outline the product requirements, expected user volume, desired cloud providers (AWS/GCP/Azure), AI agent workflows, and any existing systems to integrate..."
+                      value={rfpForm.rfpDetails}
+                      onChange={(e) => setRfpForm({ ...rfpForm, rfpDetails: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '14px 16px',
+                        borderRadius: '12px',
+                        background: 'rgba(255, 255, 255, 0.04)',
+                        border: '1px solid var(--border-glass)',
+                        color: 'var(--text-main)',
+                        fontSize: '0.92rem',
+                        outline: 'none',
+                        resize: 'vertical'
+                      }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <input
+                      type="checkbox"
+                      id="ndaCheck"
+                      checked={rfpForm.needNDA}
+                      onChange={(e) => setRfpForm({ ...rfpForm, needNDA: e.target.checked })}
+                      style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'var(--cyan-core)' }}
+                    />
+                    <label htmlFor="ndaCheck" style={{ fontSize: '0.85rem', color: 'var(--text-muted)', cursor: 'pointer' }}>
+                      Please provide a mutual Non-Disclosure Agreement (NDA) before detailed requirement disclosures.
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary"
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: '1rem',
+                      justifyContent: 'center',
+                      opacity: isSubmitting ? 0.7 : 1
+                    }}
+                  >
+                    {isSubmitting ? (
+                      <span>Submitting Project Scope...</span>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        <span>Submit RFP for Architecture Review</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+
         </div>
       </section>
+
+      {/* CONSULTING FAQS */}
+      <section className="content-section">
+        <div style={{ maxWidth: '780px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+            <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', marginBottom: '8px' }}>
+              Frequently Asked <span className="gradient-text">Questions</span>
+            </h3>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
+              Everything you need to know about engaging Qubrix Consulting.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {faqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div
+                  key={idx}
+                  className="glass-panel"
+                  style={{
+                    borderRadius: '16px',
+                    border: '1px solid var(--border-glass)',
+                    overflow: 'hidden',
+                    transition: 'all 0.25s ease'
+                  }}
+                >
+                  <button
+                    onClick={() => toggleFaq(idx)}
+                    style={{
+                      width: '100%',
+                      padding: '20px 24px',
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--text-main)',
+                      fontSize: '1rem',
+                      fontWeight: 600,
+                      fontFamily: 'var(--font-heading)',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between'
+                    }}
+                  >
+                    <span>{faq.q}</span>
+                    {isOpen ? <ChevronUp size={18} color="var(--cyan-core)" /> : <ChevronDown size={18} color="var(--text-dim)" />}
+                  </button>
+
+                  {isOpen && (
+                    <div style={{ padding: '0 24px 22px 24px', color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: 1.6 }}>
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

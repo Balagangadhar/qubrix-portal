@@ -2,750 +2,963 @@ import React, { useState } from 'react';
 import { 
   ArrowRight, 
   Sparkles, 
-  Layers, 
-  GraduationCap, 
-  Atom, 
-  Cpu, 
-  Palette, 
+  Globe, 
   Smartphone, 
-  Laptop, 
-  Tablet, 
-  Code, 
+  Cpu, 
+  Layers, 
+  ShieldCheck, 
   Zap, 
   CheckCircle2, 
   Terminal, 
-  Monitor, 
   Activity, 
-  FlaskConical,
-  Eye,
-  Sliders,
-  Play
+  Sliders, 
+  FileText,
+  Clock,
+  ExternalLink,
+  ChevronRight,
+  TrendingUp,
+  Server,
+  Lock,
+  Database,
+  BarChart3,
+  Calendar,
+  Share2,
+  MessageSquare,
+  CreditCard,
+  Search,
+  Box,
+  Shield
 } from 'lucide-react';
-import { INSTRUCTORS } from '../data/instructorsData';
+import ThreeConsultingCanvas from '../components/ThreeConsultingCanvas';
+import { LEADERSHIP } from '../data/leadershipData';
+import { SERVICES, PORTFOLIO } from '../data/servicesData';
+import { CONSULTING_DOMAINS } from '../data/consultingScopeData';
+import { CAPABILITIES } from '../data/capabilitiesData';
 
 export default function HomeView({ setView, onOpenTerminal }) {
-  // Hero Interactive Device Sandbox State
-  const [activeDeviceView, setActiveDeviceView] = useState('desktop'); // 'desktop' | 'mobile' | 'code'
-  const [deviceAccent, setDeviceAccent] = useState('#00f2fe');
-  const [simulatedMetric, setSimulatedMetric] = useState(14820);
-  const [activeScreenTab, setActiveScreenTab] = useState('analytics');
+  const [activePillar, setActivePillar] = useState('web');
+  const [activeArchLayer, setActiveArchLayer] = useState('web');
+
+  // Quick Scope Calculator State on Homepage
+  const [quickDomain, setQuickDomain] = useState('web');
+  const [quickStage, setQuickStage] = useState('mvp');
+
+  const selectedDomainObj = CONSULTING_DOMAINS.find(d => d.id === quickDomain) || CONSULTING_DOMAINS[0];
 
   return (
-    <div style={{ paddingTop: '30px' }}>
-      {/* Hero Section */}
+    <div style={{ paddingTop: '20px', paddingBottom: '80px' }}>
+      
+      {/* HERO SECTION WITH 3D WEBGL GRAPHICS */}
       <section className="content-section" style={{ position: 'relative', marginBottom: '80px' }}>
-        <div style={{ textAlign: 'center', maxWidth: '960px', margin: '0 auto 40px auto' }}>
-          {/* Futuristic Web & Mobile Badge */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 18px',
-              borderRadius: '999px',
-              background: 'rgba(0, 242, 254, 0.08)',
-              border: '1px solid var(--border-glow)',
-              marginBottom: '20px'
-            }}
-          >
-            <Sparkles size={15} color="var(--cyan-core)" />
-            <span style={{ fontSize: '0.84rem', fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--cyan-core)', letterSpacing: '0.04em' }}>
-              NEXT-GEN WEB & MOBILE APPLICATION STUDIO
-            </span>
-          </div>
-
-          {/* Main Title - Immediate Web & Mobile Clarity */}
-          <h1
-            style={{
-              fontSize: 'clamp(2.6rem, 5.5vw, 4.6rem)',
-              lineHeight: 1.12,
-              marginBottom: '20px',
-              letterSpacing: '-0.03em'
-            }}
-          >
-            We Architect High-Performance <br />
-            <span className="gradient-text">Web & Mobile Products</span>
-          </h1>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontSize: 'clamp(1.05rem, 1.8vw, 1.25rem)',
-              color: 'var(--text-muted)',
-              lineHeight: 1.6,
-              marginBottom: '32px',
-              maxWidth: '820px',
-              margin: '0 auto 32px auto'
-            }}
-          >
-            Qubrix is an elite digital engineering studio. We build buttery-smooth web applications, native iOS & Android
-            mobile experiences, and spatial UI/UX systems — complemented by real-world practitioner courses and interactive frontier labs.
-          </p>
-
-          {/* Primary CTA Buttons */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '14px',
-              marginBottom: '36px'
-            }}
-          >
-            <button
-              onClick={() => setView('services')}
-              className="btn-primary"
-              style={{ padding: '16px 32px', fontSize: '1rem' }}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
+          gap: '40px', 
+          alignItems: 'center',
+          minHeight: '620px'
+        }}>
+          
+          {/* Left Text & Call to Actions */}
+          <div style={{ zIndex: 5 }}>
+            {/* Consulting Badge */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 16px',
+                borderRadius: '999px',
+                background: 'rgba(0, 242, 254, 0.08)',
+                border: '1px solid var(--border-glow)',
+                marginBottom: '20px'
+              }}
             >
-              <Layers size={18} />
-              Launch Web/Mobile Project
-              <ArrowRight size={16} />
-            </button>
-
-            <button
-              onClick={() => setView('labs')}
-              className="btn-secondary"
-              style={{ padding: '15px 28px', fontSize: '0.98rem', borderColor: 'var(--cyan-core)' }}
-            >
-              <FlaskConical size={18} color="var(--cyan-core)" />
-              Try Interactive Labs (3 Labs)
-            </button>
-
-            <button
-              onClick={() => setView('courses')}
-              className="btn-secondary btn-glow-violet"
-              style={{ padding: '15px 26px', fontSize: '0.98rem' }}
-            >
-              <GraduationCap size={18} color="var(--purple-accent)" />
-              Academy Courses
-            </button>
-          </div>
-
-          {/* Quick Metrics Bar */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '24px',
-              fontSize: '0.86rem',
-              color: 'var(--text-muted)',
-              fontFamily: 'var(--font-heading)'
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle2 size={15} color="var(--cyan-core)" /> 60fps Fluid Web & Native Apps
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle2 size={15} color="#10b981" /> 99.9% Production Uptime SLA
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <CheckCircle2 size={15} color="var(--purple-accent)" /> Mentors from JPMorganChase & Evoke
-            </span>
-          </div>
-        </div>
-
-        {/* HERO VISUALIZATION: Interactive Live Device & UI Architecture Simulator */}
-        <div
-          className="glass-panel"
-          style={{
-            maxWidth: '1060px',
-            margin: '0 auto',
-            padding: '24px',
-            borderRadius: '24px',
-            border: '1px solid var(--border-glow)',
-            boxShadow: '0 25px 60px rgba(0, 0, 0, 0.45)',
-            position: 'relative'
-          }}
-        >
-          {/* Top Device Bar & Mode Switcher */}
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '12px',
-              paddingBottom: '16px',
-              borderBottom: '1px solid var(--border-glass)'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ display: 'flex', gap: '6px' }}>
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#f43f5e', display: 'inline-block' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#eab308', display: 'inline-block' }} />
-                <span style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#10b981', display: 'inline-block' }} />
-              </div>
-              <span style={{ fontSize: '0.82rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)' }}>
-                qubrix-studio // live preview simulator
+              <Sparkles size={15} color="var(--cyan-core)" />
+              <span style={{ fontSize: '0.82rem', fontFamily: 'var(--font-heading)', fontWeight: 700, color: 'var(--cyan-core)', letterSpacing: '0.04em' }}>
+                ENTERPRISE DIGITAL & AI CONSULTING PARTNERSHIP
               </span>
             </div>
 
-            {/* Device Switcher Tabs */}
+            {/* Main Headline */}
+            <h1
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4.4rem)',
+                lineHeight: 1.1,
+                marginBottom: '22px',
+                letterSpacing: '-0.03em'
+              }}
+            >
+              Architecting Next-Gen <br />
+              <span className="gradient-text">Web, Mobile & AI</span> <br />
+              Digital Platforms
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              style={{
+                fontSize: 'clamp(1.05rem, 1.8vw, 1.2rem)',
+                color: 'var(--text-muted)',
+                lineHeight: 1.6,
+                marginBottom: '32px',
+                maxWidth: '640px'
+              }}
+            >
+              Qubrix is an elite technology consulting firm led by 
+              <strong style={{ color: 'var(--text-main)' }}> Bala (14+ yrs, JPMorganChase)</strong> and 
+              <strong style={{ color: 'var(--text-main)' }}> Srikanth (14+ yrs, Evoke Technologies)</strong>. 
+              We partner with enterprise leaders and high-growth ventures to architect, engineer, and deploy high-throughput web applications, native mobile experiences, and autonomous AI systems.
+            </p>
+
+            {/* Action Buttons */}
             <div
               style={{
                 display: 'flex',
-                background: 'rgba(255, 255, 255, 0.05)',
-                padding: '4px',
-                borderRadius: '999px',
-                gap: '4px',
-                border: '1px solid var(--border-glass)'
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                gap: '14px',
+                marginBottom: '40px'
               }}
             >
-              {[
-                { id: 'desktop', label: 'Desktop Web App', icon: Monitor },
-                { id: 'mobile', label: 'Mobile Native App', icon: Smartphone },
-                { id: 'code', label: 'React 19 Code', icon: Code }
-              ].map((tab) => {
-                const Icon = tab.icon;
-                const isActive = activeDeviceView === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveDeviceView(tab.id)}
-                    style={{
-                      background: isActive ? 'linear-gradient(135deg, var(--cyan-core), #38bdf8)' : 'transparent',
-                      color: isActive ? '#030014' : 'var(--text-muted)',
-                      border: 'none',
-                      padding: '6px 14px',
-                      borderRadius: '999px',
-                      fontSize: '0.8rem',
-                      fontWeight: 700,
-                      fontFamily: 'var(--font-heading)',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    <Icon size={14} />
-                    {tab.label}
-                  </button>
-                );
-              })}
+              <button
+                onClick={() => {
+                  setView('contact');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="btn-primary"
+                style={{ padding: '16px 30px', fontSize: '1rem' }}
+              >
+                <span>Schedule Strategy Consultation</span>
+                <ArrowRight size={16} />
+              </button>
+
+              <button
+                onClick={() => {
+                  setView('scope');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="btn-secondary"
+                style={{ padding: '16px 24px', fontSize: '0.95rem' }}
+              >
+                <Sliders size={16} color="var(--cyan-core)" />
+                <span>Interactive Scope Builder</span>
+              </button>
             </div>
 
-            {/* Accent Color Palette Switcher */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '0.74rem', color: 'var(--text-dim)', textTransform: 'uppercase', fontFamily: 'var(--font-mono)' }}>
-                Theme:
+            {/* Trust Metrics Strip */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '16px',
+                paddingTop: '20px',
+                borderTop: '1px solid var(--border-glass)',
+                maxWidth: '560px'
+              }}
+            >
+              <div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 900, color: 'var(--cyan-core)', fontFamily: 'var(--font-heading)' }}>
+                  14+ Years
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
+                  Enterprise Leadership
+                </div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 900, color: 'var(--purple-accent)', fontFamily: 'var(--font-heading)' }}>
+                  45+ Systems
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
+                  Delivered in Prod
+                </div>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 900, color: '#10b981', fontFamily: 'var(--font-heading)' }}>
+                  99.99%
+                </div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
+                  Architecture SLA
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Right 3D Interactive WebGL Element */}
+          <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '480px' }}>
+            <div
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '28px',
+                background: 'radial-gradient(circle at center, rgba(121, 40, 202, 0.12) 0%, rgba(3, 0, 20, 0.4) 70%)',
+                border: '1px solid var(--border-glass)',
+                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.5)',
+                overflow: 'hidden',
+                position: 'relative'
+              }}
+            >
+              <ThreeConsultingCanvas 
+                activePillar={activePillar} 
+                onSelectPillar={(pillarId) => setActivePillar(pillarId)} 
+              />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* THE THREE CONSULTING PILLARS */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <div className="badge-pill badge-violet" style={{ marginBottom: '14px' }}>
+            CORE CONSULTING VERTICALS
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '16px' }}>
+            Three Pillars of <span className="gradient-text">Modern Digital Craft</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto', fontSize: '1.05rem' }}>
+            From high-throughput distributed web micro-frontends to native mobile apps and enterprise autonomous AI swarms.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+          
+          {/* Pillar 1: Web Application Consulting */}
+          <div 
+            className="glass-panel"
+            style={{
+              padding: '36px',
+              borderRadius: '24px',
+              border: activePillar === 'web' ? '2px solid #00f2fe' : '1px solid var(--border-glass)',
+              transition: 'all 0.3s ease',
+              position: 'relative',
+              background: activePillar === 'web' ? 'linear-gradient(145deg, rgba(11, 14, 38, 0.95), rgba(0, 242, 254, 0.05))' : undefined
+            }}
+            onMouseEnter={() => setActivePillar('web')}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px' }}>
+              <div style={{ 
+                width: '52px', 
+                height: '52px', 
+                borderRadius: '14px', 
+                background: 'rgba(0, 242, 254, 0.1)', 
+                border: '1px solid rgba(0, 242, 254, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Globe size={26} color="#00f2fe" />
+              </div>
+              <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', padding: '3px 8px', borderRadius: '999px', background: 'rgba(0, 242, 254, 0.1)', color: '#00f2fe', fontWeight: 700 }}>
+                HIGH THROUGHPUT
               </span>
+            </div>
+
+            <h3 style={{ fontSize: '1.45rem', marginBottom: '12px', color: 'var(--text-main)' }}>
+              Web Application Architecture
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+              We design and engineer resilient Next.js 15 & React 19 web platforms, micro-frontends, and distributed streaming backends capable of sub-millisecond edge response times.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
               {[
-                { color: '#00f2fe', name: 'Cyan' },
-                { color: '#a855f7', name: 'Violet' },
-                { color: '#10b981', name: 'Emerald' },
-                { color: '#ec4899', name: 'Magenta' }
-              ].map((c) => (
-                <button
-                  key={c.color}
-                  onClick={() => setDeviceAccent(c.color)}
-                  title={c.name}
-                  style={{
-                    width: '18px',
-                    height: '18px',
-                    borderRadius: '50%',
-                    background: c.color,
-                    border: deviceAccent === c.color ? '2px solid #ffffff' : 'none',
-                    cursor: 'pointer',
-                    boxShadow: deviceAccent === c.color ? `0 0 10px ${c.color}` : 'none'
-                  }}
-                />
+                'Next.js 15 & React 19 Micro-Frontends',
+                'High-Concurrency Go & Node.js Edge APIs',
+                'Multi-Region Cloud Deployment with Zero Downtime',
+                'Real-Time WebSocket & Kafka Event Streaming'
+              ].map((pt, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-main)' }}>
+                  <CheckCircle2 size={15} color="#00f2fe" />
+                  <span>{pt}</span>
+                </div>
               ))}
             </div>
+
+            <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                Lead: Bala (JPMorganChase)
+              </span>
+              <button 
+                onClick={() => setView('services')} 
+                style={{ background: 'none', border: 'none', color: '#00f2fe', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                Learn More <ChevronRight size={14} />
+              </button>
+            </div>
           </div>
 
-          {/* DEVICE CONTAINER BODY */}
-          <div style={{ padding: '24px 0 8px 0' }}>
-            {activeDeviceView === 'desktop' && (
-              /* Desktop SaaS Web Dashboard Simulation */
-              <div
-                style={{
-                  background: 'rgba(5, 8, 28, 0.85)',
-                  border: `1px solid ${deviceAccent}40`,
-                  borderRadius: '16px',
-                  padding: '24px',
-                  boxShadow: `0 10px 40px ${deviceAccent}15`
-                }}
-              >
-                {/* Simulated Header */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: deviceAccent, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#030014', fontWeight: 800, fontSize: '0.85rem' }}>
-                      QB
-                    </div>
-                    <div>
-                      <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#f8fafc' }}>
-                        Enterprise Web Architecture Portal
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                        Next.js 15 Server Components • Sub-millisecond Edge Response
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '8px' }}>
-                    {['analytics', 'swarms', 'infrastructure'].map((sub) => (
-                      <button
-                        key={sub}
-                        onClick={() => setActiveScreenTab(sub)}
-                        style={{
-                          background: activeScreenTab === sub ? `${deviceAccent}20` : 'transparent',
-                          border: activeScreenTab === sub ? `1px solid ${deviceAccent}` : '1px solid rgba(255, 255, 255, 0.08)',
-                          color: activeScreenTab === sub ? deviceAccent : '#cbd5e1',
-                          padding: '6px 12px',
-                          borderRadius: '8px',
-                          fontSize: '0.78rem',
-                          cursor: 'pointer',
-                          textTransform: 'capitalize'
-                        }}
-                      >
-                        {sub}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Simulated Web Metric Cards */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '20px' }}>
-                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Real-Time Requests / sec</div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: deviceAccent, fontFamily: 'var(--font-mono)' }}>
-                      {simulatedMetric.toLocaleString()}
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#10b981', marginTop: '4px' }}>▲ 24.8% edge latency boost</div>
-                  </div>
-
-                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Core Web Vitals</div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#10b981', fontFamily: 'var(--font-mono)' }}>
-                      100 / 100
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '4px' }}>LCP: 0.6s • FID: 2ms • CLS: 0.0</div>
-                  </div>
-
-                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
-                    <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginBottom: '4px' }}>Mobile Native Sync</div>
-                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#c084fc', fontFamily: 'var(--font-mono)' }}>
-                      Zero Lag
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#94a3b8', marginTop: '4px' }}>WebSocket duplex streaming</div>
-                  </div>
-                </div>
-
-                {/* Simulated Interactive Wave Chart & Trigger */}
-                <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255, 255, 255, 0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Activity size={18} color={deviceAccent} />
-                    <span style={{ fontSize: '0.85rem', color: '#e2e8f0' }}>Live System Throughput Monitor: All 12 Edge Regions Healthy</span>
-                  </div>
-                  <button
-                    onClick={() => setSimulatedMetric(prev => prev + Math.floor(Math.random() * 800 - 300))}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      border: `1px solid ${deviceAccent}60`,
-                      color: deviceAccent,
-                      padding: '6px 14px',
-                      borderRadius: '6px',
-                      fontSize: '0.78rem',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Simulate Spike
-                  </button>
-                </div>
+          {/* Pillar 2: Mobile Application Engineering */}
+          <div 
+            className="glass-panel"
+            style={{
+              padding: '36px',
+              borderRadius: '24px',
+              border: activePillar === 'mobile' ? '2px solid #3b82f6' : '1px solid var(--border-glass)',
+              transition: 'all 0.3s ease',
+              position: 'relative',
+              background: activePillar === 'mobile' ? 'linear-gradient(145deg, rgba(11, 14, 38, 0.95), rgba(59, 130, 246, 0.05))' : undefined
+            }}
+            onMouseEnter={() => setActivePillar('mobile')}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px' }}>
+              <div style={{ 
+                width: '52px', 
+                height: '52px', 
+                borderRadius: '14px', 
+                background: 'rgba(59, 130, 246, 0.1)', 
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Smartphone size={26} color="#3b82f6" />
               </div>
-            )}
-
-            {activeDeviceView === 'mobile' && (
-              /* Mobile App Frame Simulation */
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div
-                  style={{
-                    width: '320px',
-                    height: '420px',
-                    background: '#090d2a',
-                    border: `3px solid ${deviceAccent}`,
-                    borderRadius: '36px',
-                    padding: '16px',
-                    boxShadow: `0 15px 40px ${deviceAccent}25`,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    position: 'relative'
-                  }}
-                >
-                  {/* Dynamic Island */}
-                  <div style={{ width: '90px', height: '18px', background: '#000', borderRadius: '12px', margin: '0 auto 14px auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: deviceAccent, opacity: 0.8 }} />
-                  </div>
-
-                  {/* App Screen Content */}
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                      <div>
-                        <div style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Qubrix Mobile Experience</div>
-                        <div style={{ fontSize: '1rem', fontWeight: 800, color: '#fff' }}>AuroraPay Wallet</div>
-                      </div>
-                      <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: deviceAccent, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#030014', fontWeight: 800, fontSize: '0.75rem' }}>
-                        iOS
-                      </div>
-                    </div>
-
-                    {/* Balance Card */}
-                    <div style={{ background: `linear-gradient(135deg, ${deviceAccent}30 0%, #7928ca40 100%)`, border: `1px solid ${deviceAccent}50`, borderRadius: '16px', padding: '16px', marginBottom: '12px' }}>
-                      <div style={{ fontSize: '0.72rem', color: '#e2e8f0' }}>Total Portfolio Value</div>
-                      <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-mono)' }}>₹12,84,900.00</div>
-                      <div style={{ fontSize: '0.68rem', color: '#10b981', marginTop: '4px' }}>▲ 12.4% biometric instant settlement (UPI / IMPS)</div>
-                    </div>
-
-                    {/* Quick Action Pills */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '10px' }}>
-                      {['Send', 'Receive', 'Analytics'].map((act, i) => (
-                        <div key={i} style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '8px', borderRadius: '8px', textAlign: 'center', fontSize: '0.72rem', color: '#cbd5e1' }}>
-                          {act}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Home Indicator Bar */}
-                  <div style={{ width: '100px', height: '4px', background: 'rgba(255, 255, 255, 0.4)', borderRadius: '2px', margin: '0 auto' }} />
-                </div>
-              </div>
-            )}
-
-            {activeDeviceView === 'code' && (
-              /* Live React 19 / TypeScript Server Component Code Preview */
-              <div className="code-preview-window" style={{ padding: '20px' }}>
-                <div style={{ fontSize: '0.78rem', color: '#64748b', marginBottom: '10px' }}>
-                  // Next.js 15 App Router & React 19 Server Actions Architecture
-                </div>
-                <pre style={{ margin: 0, fontSize: '0.85rem', color: '#cbd5e1', lineHeight: 1.6, overflowX: 'auto' }}>
-{`export default async function WebStudioDashboard({ orgId }: { orgId: string }) {
-  // Edge Streaming with React 19 Server Components
-  const [telemetry, agentFleet] = await Promise.all([
-    fetchEdgeMetrics(orgId, { revalidate: 60 }),
-    getAutonomousSwarmStatus(orgId)
-  ]);
-
-  return (
-    <SpatialLayout theme="${deviceAccent}">
-      <MicroFrontendStream data={telemetry} fps={60} />
-      <MobileSynchronizer protocol="WebSocket" offlineResilient />
-      <PostQuantumShield algorithm="ML-KEM-768" status="Enforced" />
-    </SpatialLayout>
-  );
-}`}
-                </pre>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* CORE DISCIPLINES: Unmistakable Web, Mobile & Digital Offerings */}
-      <section className="content-section" style={{ marginBottom: '90px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '44px' }}>
-          <h2 style={{ fontSize: '2.4rem', marginBottom: '12px' }}>
-            What We Build at Qubrix Studio
-          </h2>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto', fontSize: '1.05rem' }}>
-            Specialized engineering for ambitious digital products that demand high velocity, pristine visual aesthetics, and rock-solid resiliency.
-          </p>
-        </div>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '24px'
-          }}
-        >
-          {[
-            {
-              icon: Laptop,
-              title: 'Full-Stack Web Apps',
-              accent: 'var(--cyan-core)',
-              desc: 'Ultra-fast Next.js 15 & React 19 web platforms, distributed microservices in Go & Node, and sub-millisecond edge APIs.',
-              tags: ['Next.js 15', 'React 19', 'TypeScript', 'PostgreSQL', 'Redis']
-            },
-            {
-              icon: Smartphone,
-              title: 'Native Mobile Engineering',
-              accent: '#3b82f6',
-              desc: 'High-performance iOS and Android applications with 60fps gesture fluidness, offline-first sync, and biometric authentication.',
-              tags: ['React Native', 'Swift iOS', 'Kotlin', 'Offline SQLite']
-            },
-            {
-              icon: Palette,
-              title: 'Spatial UI/UX Design',
-              accent: '#ec4899',
-              desc: 'Dark ergonomic interfaces, Figma design systems with automated token pipelines, silky micro-animations, and 3D web assets.',
-              tags: ['Figma Tokens', 'Design Systems', 'Micro-interactions', 'WCAG AAA']
-            },
-            {
-              icon: Cpu,
-              title: 'Autonomous Agentic AI',
-              accent: 'var(--purple-accent)',
-              desc: 'Multi-agent reasoning loops, deterministic guardrails, custom LLM tool routing, and enterprise hybrid vector search.',
-              tags: ['LangGraph', 'Swarm AI', 'GraphRAG', 'Self-Hosted LLMs']
-            }
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={idx}
-                className="glass-panel"
-                style={{
-                  padding: '30px',
-                  borderRadius: '20px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  border: '1px solid var(--border-glass)'
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      width: '48px',
-                      height: '48px',
-                      borderRadius: '14px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: `1px solid ${item.accent}50`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '18px'
-                    }}
-                  >
-                    <Icon size={24} color={item.accent} />
-                  </div>
-                  <h3 style={{ fontSize: '1.35rem', marginBottom: '8px' }}>{item.title}</h3>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '20px' }}>
-                    {item.desc}
-                  </p>
-                </div>
-
-                <div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
-                    {item.tags.map((t, i) => (
-                      <span
-                        key={i}
-                        style={{
-                          fontSize: '0.72rem',
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          background: 'rgba(255, 255, 255, 0.04)',
-                          color: 'var(--text-muted)'
-                        }}
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-
-                  <button
-                    onClick={() => setView('services')}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: item.accent,
-                      fontSize: '0.85rem',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: 0
-                    }}
-                  >
-                    Learn More & Scope Project <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* THREE INTERACTIVE LABS SHOWCASE (Web/UI Lab, AI Swarms Lab, Quantum Lab) */}
-      <section className="content-section" style={{ marginBottom: '90px' }}>
-        <div
-          className="glass-panel"
-          style={{
-            padding: '48px',
-            borderRadius: '24px',
-            background: 'linear-gradient(135deg, rgba(8, 14, 40, 0.95) 0%, rgba(18, 22, 60, 0.9) 100%)',
-            border: '1px solid var(--border-glow)'
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', marginBottom: '32px' }}>
-            <div>
-              <div className="badge-pill badge-cyan" style={{ marginBottom: '12px' }}>
-                <FlaskConical size={14} />
-                THE QUBRIX INTERACTIVE LABS SUITE
-              </div>
-              <h2 style={{ fontSize: '2.2rem', marginBottom: '10px' }}>
-                Experiment in Browser: 3 Live Technology Sandboxes
-              </h2>
-              <p style={{ color: 'var(--text-muted)', maxWidth: '640px', fontSize: '0.98rem' }}>
-                We believe in learning by touch. Test our in-browser interactive labs across modern UI design, autonomous AI swarms, and quantum computing.
-              </p>
+              <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', padding: '3px 8px', borderRadius: '999px', background: 'rgba(59, 130, 246, 0.15)', color: '#60a5fa', fontWeight: 700 }}>
+                NATIVE & CROSS-PLATFORM
+              </span>
             </div>
 
-            <button
-              onClick={() => setView('labs')}
-              className="btn-primary"
-              style={{ padding: '14px 28px', fontSize: '0.95rem' }}
-            >
-              Open Interactive Labs Hub
-              <ArrowRight size={16} />
-            </button>
+            <h3 style={{ fontSize: '1.45rem', marginBottom: '12px', color: 'var(--text-main)' }}>
+              Mobile App Development
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+              Fluid iOS (Swift) and Android (Kotlin / React Native / Flutter) engineering with 60fps animations, offline-first synchronization, biometric security, and native device hardware utilization.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+              {[
+                'React Native & Flutter Multi-Platform Speed',
+                'Offline-First Sync with SQLite & WatermelonDB',
+                'Biometric Authentication & Secure Enclave',
+                'End-to-End App Store Publication & OTA Updates'
+              ].map((pt, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-main)' }}>
+                  <CheckCircle2 size={15} color="#3b82f6" />
+                  <span>{pt}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                Lead: Srikanth (Evoke Tech)
+              </span>
+              <button 
+                onClick={() => setView('services')} 
+                style={{ background: 'none', border: 'none', color: '#60a5fa', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                Learn More <ChevronRight size={14} />
+              </button>
+            </div>
           </div>
 
-          <div
+          {/* Pillar 3: AI Enablement */}
+          <div 
+            className="glass-panel"
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '20px'
+              padding: '36px',
+              borderRadius: '24px',
+              border: activePillar === 'ai' ? '2px solid #a855f7' : '1px solid var(--border-glass)',
+              transition: 'all 0.3s ease',
+              position: 'relative',
+              background: activePillar === 'ai' ? 'linear-gradient(145deg, rgba(11, 14, 38, 0.95), rgba(168, 85, 247, 0.05))' : undefined
             }}
+            onMouseEnter={() => setActivePillar('ai')}
           >
-            {[
-              {
-                id: 'web-lab',
-                title: 'Web & UI/UX Physics Lab',
-                category: 'Frontend Engineering',
-                accent: 'var(--cyan-core)',
-                desc: 'Tweak spring physics, glassmorphism blur, CSS token gradients, and test responsive device viewports in real time.'
-              },
-              {
-                id: 'ai-lab',
-                title: 'Agentic AI Swarm Lab',
-                category: 'Autonomous Multi-Agent',
-                accent: 'var(--purple-accent)',
-                desc: 'Watch simulated specialized agents (Architect, Designer, Coder) debate and assemble production code graphs live.'
-              },
-              {
-                id: 'quantum-lab',
-                title: 'Quantum Information Lab',
-                category: 'Qubits & Entanglement',
-                accent: '#10b981',
-                desc: 'Interactive 3D Bloch sphere vector manipulator, Hadamard/Pauli logic gates circuit, and Bell state entanglement simulator.'
-              }
-            ].map((lab) => (
-              <div
-                key={lab.id}
-                onClick={() => setView('labs')}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  borderRadius: '16px',
-                  padding: '24px',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s'
-                }}
-              >
-                <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: lab.accent, background: `${lab.accent}15`, padding: '3px 8px', borderRadius: '4px' }}>
-                  {lab.category}
-                </span>
-                <h4 style={{ fontSize: '1.25rem', margin: '12px 0 8px 0', color: '#fff' }}>{lab.title}</h4>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.86rem', lineHeight: 1.5, marginBottom: '16px' }}>{lab.desc}</p>
-                <div style={{ color: lab.accent, fontSize: '0.82rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  Launch Sandbox <ArrowRight size={14} />
-                </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px' }}>
+              <div style={{ 
+                width: '52px', 
+                height: '52px', 
+                borderRadius: '14px', 
+                background: 'rgba(168, 85, 247, 0.1)', 
+                border: '1px solid rgba(168, 85, 247, 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <Cpu size={26} color="#a855f7" />
               </div>
-            ))}
+              <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', padding: '3px 8px', borderRadius: '999px', background: 'rgba(168, 85, 247, 0.15)', color: '#c084fc', fontWeight: 700 }}>
+                AGENTIC & RAG
+              </span>
+            </div>
+
+            <h3 style={{ fontSize: '1.45rem', marginBottom: '12px', color: 'var(--text-main)' }}>
+              Enterprise AI Enablement
+            </h3>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+              We transform internal enterprise workflows with autonomous multi-agent reasoning networks (LangGraph), hybrid knowledge retrieval (GraphRAG), and private on-premise LLMs.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+              {[
+                'Multi-Agent Swarm Orchestration with LangGraph',
+                'Enterprise Hybrid Vector Search & Knowledge Graphs',
+                'Deterministic Safety Guardrails & Automated Evals',
+                'Private On-Premise Local LLM Hosting & Compliance'
+              ].map((pt, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-main)' }}>
+                  <CheckCircle2 size={15} color="#a855f7" />
+                  <span>{pt}</span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                Lead: Srikanth & Bala (Co-Lead)
+              </span>
+              <button 
+                onClick={() => setView('services')} 
+                style={{ background: 'none', border: 'none', color: '#c084fc', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                Learn More <ChevronRight size={14} />
+              </button>
+            </div>
           </div>
+
         </div>
       </section>
 
-      {/* FOUNDING COURSE AUTHORS (Bala & Srikanth) */}
-      <section className="content-section" style={{ marginBottom: '80px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '44px' }}>
-          <div className="badge-pill badge-violet" style={{ marginBottom: '12px' }}>
-            FACULTY & ENTERPRISE ARCHITECTS
+      {/* REUSABLE DIGITAL CAPABILITIES CATALOGUE SHOWCASE */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '46px' }}>
+          <div className="badge-pill badge-cyan" style={{ marginBottom: '14px' }}>
+            REUSABLE DIGITAL CAPABILITIES MATRIX
           </div>
-          <h2 style={{ fontSize: '2.2rem', marginBottom: '12px' }}>
-            Learn from Practitioners, Not Theorists
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '16px' }}>
+            Architecting With <span className="gradient-text">Reusable Superpowers</span>
           </h2>
-          <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto', fontSize: '0.98rem' }}>
-            Qubrix Academy courses are led by enterprise specialists engineering critical systems at JPMorganChase and Evoke Technologies.
+          <p style={{ color: 'var(--text-muted)', maxWidth: '780px', margin: '0 auto', fontSize: '1.05rem', lineHeight: 1.6 }}>
+            Rather than treating every website or mobile app as an ad-hoc collection of unrelated features, 
+            Qubrix organizes digital systems into <strong>8 reusable, production-tested capability foundations</strong>.
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px'
+        {/* 8 Capabilities Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px', marginBottom: '32px' }}>
+          {CAPABILITIES.map(cap => (
+            <div
+              key={cap.id}
+              className="glass-panel"
+              style={{
+                padding: '24px',
+                borderRadius: '20px',
+                border: '1px solid var(--border-glass)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                transition: 'all 0.25s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = cap.accent;
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-glass)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+                  <div style={{ 
+                    width: '42px', 
+                    height: '42px', 
+                    borderRadius: '12px', 
+                    background: `${cap.accent}15`, 
+                    border: `1px solid ${cap.accent}40`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    {cap.id === 'connect' && <Share2 size={20} color={cap.accent} />}
+                    {cap.id === 'communicate' && <MessageSquare size={20} color={cap.accent} />}
+                    {cap.id === 'transact' && <CreditCard size={20} color={cap.accent} />}
+                    {cap.id === 'understand' && <Search size={20} color={cap.accent} />}
+                    {cap.id === 'intelligence' && <Cpu size={20} color={cap.accent} />}
+                    {cap.id === 'immerse' && <Box size={20} color={cap.accent} />}
+                    {cap.id === 'secure' && <Shield size={20} color={cap.accent} />}
+                    {cap.id === 'operate' && <Activity size={20} color={cap.accent} />}
+                  </div>
+
+                  <span style={{ fontSize: '0.68rem', fontFamily: 'var(--font-mono)', color: cap.accent, fontWeight: 700 }}>
+                    {cap.badge}
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.25rem', color: 'var(--text-main)', marginBottom: '6px' }}>
+                  {cap.name}
+                </h3>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '16px' }}>
+                  {cap.subCapabilities.map(s => s.name.split(' ')[0]).slice(0, 4).join(', ')}...
+                </p>
+              </div>
+
+              <button
+                onClick={() => {
+                  setView('capabilities');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: cap.accent,
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  padding: 0
+                }}
+              >
+                <span>Discover Magic & Research</span>
+                <ChevronRight size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Explore Full Catalogue Banner */}
+        <div style={{ textAlign: 'center' }}>
+          <button
+            onClick={() => {
+              setView('capabilities');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="btn-secondary"
+            style={{ padding: '14px 28px', fontSize: '0.92rem' }}
+          >
+            <Sparkles size={16} color="var(--cyan-core)" />
+            <span>Open Interactive Digital Capabilities Catalogue & Stack Composer</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </section>
+
+      {/* INTERACTIVE 3D ARCHITECTURE STACK INSPECTOR */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div 
+          className="glass-panel" 
+          style={{ 
+            padding: '48px', 
+            borderRadius: '28px', 
+            border: '1px solid var(--border-glow)',
+            background: 'linear-gradient(135deg, rgba(8, 11, 35, 0.95) 0%, rgba(14, 18, 52, 0.85) 100%)'
           }}
         >
-          {INSTRUCTORS.map((author) => (
+          <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 36px auto' }}>
+            <div className="badge-pill badge-cyan" style={{ marginBottom: '12px' }}>
+              INNOVATIVE SYSTEM BLUEPRINT
+            </div>
+            <h2 style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)', marginBottom: '12px' }}>
+              Interactive Enterprise <span className="gradient-text">Architecture Stack</span>
+            </h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.98rem' }}>
+              Explore how we design and assemble each layer of your production solution for fault tolerance, ultra-low latency, and elastic scale.
+            </p>
+          </div>
+
+          {/* Architecture Switcher Tabs */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginBottom: '32px' }}>
+            {[
+              { id: 'web', label: 'Web Platform Stack', icon: Globe },
+              { id: 'mobile', label: 'Mobile Architecture', icon: Smartphone },
+              { id: 'ai', label: 'AI Agentic Pipeline', icon: Cpu }
+            ].map(tab => {
+              const Icon = tab.icon;
+              const isActive = activeArchLayer === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveArchLayer(tab.id)}
+                  style={{
+                    padding: '10px 20px',
+                    borderRadius: '999px',
+                    background: isActive ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.04)',
+                    border: isActive ? '1px solid var(--cyan-core)' : '1px solid var(--border-glass)',
+                    color: isActive ? 'var(--cyan-core)' : 'var(--text-muted)',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Icon size={16} />
+                  <span>{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Layer Cards Display */}
+          {activeArchLayer === 'web' && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-core)', marginBottom: '8px' }}>LAYER 01 • CLIENT INTERACTION</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Next.js 15 & React 19</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Server Components, streaming SSR, fluid micro-animations, and sub-100ms Largest Contentful Paint (LCP).
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#60a5fa', marginBottom: '8px' }}>LAYER 02 • EDGE ROUTING</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Cloudflare / Edge Workers</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Global anycast network routing, JWT verification at the edge, DDoS mitigation, and smart asset caching.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(168, 85, 247, 0.05)', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#c084fc', marginBottom: '8px' }}>LAYER 03 • MICROSERVICES</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Go / Node.js Distributed Mesh</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Event-driven microservices communicating over gRPC, Kafka event streams, and real-time WebSocket channels.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#10b981', marginBottom: '8px' }}>LAYER 04 • PERSISTENCE</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>PostgreSQL & Redis Cluster</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Multi-region read replicas, connection pooling with PgBouncer, and in-memory sub-millisecond caching.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {activeArchLayer === 'mobile' && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#60a5fa', marginBottom: '8px' }}>LAYER 01 • GESTURES & VIEW</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>React Native / Swift UI</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  60fps hardware-accelerated gesture physics, dark mode ergonomics, and adaptive tablet/phone scaling.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-core)', marginBottom: '8px' }}>LAYER 02 • LOCAL STORAGE</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>WatermelonDB & SQLite</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Instant zero-delay local queries, reactive data bindings, and background syncing when connectivity returns.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(168, 85, 247, 0.05)', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#c084fc', marginBottom: '8px' }}>LAYER 03 • HARDWARE SEC</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Biometrics & Secure Enclave</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  FaceID / TouchID biometric token authentication, encrypted keychain storage, and certificate pinning.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#10b981', marginBottom: '8px' }}>LAYER 04 • DELIVERY</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>CI/CD Fastlane & OTA</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Automated App Store and Google Play submissions with instant over-the-air hotfix deployments.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {activeArchLayer === 'ai' && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(168, 85, 247, 0.05)', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#c084fc', marginBottom: '8px' }}>LAYER 01 • COGNITIVE SUPERVISOR</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>LangGraph Swarm Coordinator</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Dynamic task decomposition, multi-agent handoffs, state checkpointing, and cyclic human-in-the-loop validation.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(0, 242, 254, 0.05)', border: '1px solid rgba(0, 242, 254, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan-core)', marginBottom: '8px' }}>LAYER 02 • HYBRID KNOWLEDGE</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>GraphRAG & Vector Search</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Hybrid sparse-dense retrieval with Qdrant/Milvus, semantic reranking models, and contextual chunk graphs.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#60a5fa', marginBottom: '8px' }}>LAYER 03 • PRIVATE EXECUTION</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Private LLM & Secure API Sandbox</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Containerized local vLLM / Ollama deployments with strict egress controls ensuring confidential enterprise data stays private.
+                </p>
+              </div>
+
+              <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.2)' }}>
+                <div style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#10b981', marginBottom: '8px' }}>LAYER 04 • EVALUATION & SAFETY</div>
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--text-main)', marginBottom: '8px' }}>Deterministic Guardrails & Tracing</h4>
+                <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                  Automated latency, hallucination, and prompt-injection testing with continuous synthetic evaluation datasets.
+                </p>
+              </div>
+            </div>
+          )}
+
+        </div>
+      </section>
+
+      {/* LEADERSHIP & FOUNDING PARTNERS */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <div className="badge-pill badge-cyan" style={{ marginBottom: '14px' }}>
+            PRINCIPAL CONSULTING LEADERSHIP
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '16px' }}>
+            Direct Access to <span className="gradient-text">Battle-Tested Architects</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '720px', margin: '0 auto', fontSize: '1.05rem' }}>
+            At Qubrix, you never get handed off to junior bench staff. Your digital systems are personally architected 
+            and directed by our founding technology partners.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '32px' }}>
+          {LEADERSHIP.map(leader => (
             <div
-              key={author.id}
+              key={leader.id}
+              className="glass-panel"
+              style={{
+                padding: '36px',
+                borderRadius: '24px',
+                border: '1px solid var(--border-glass)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                position: 'relative'
+              }}
+            >
+              <div>
+                {/* Header */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '20px' }}>
+                  <img
+                    src={leader.avatar}
+                    alt={leader.name}
+                    style={{
+                      width: '74px',
+                      height: '74px',
+                      borderRadius: '18px',
+                      objectFit: 'cover',
+                      border: '2px solid var(--cyan-core)',
+                      boxShadow: '0 0 20px rgba(0, 242, 254, 0.25)'
+                    }}
+                  />
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                      <h3 style={{ fontSize: '1.45rem', color: 'var(--text-main)', margin: 0 }}>
+                        {leader.name}
+                      </h3>
+                      <span style={{ 
+                        fontSize: '0.68rem', 
+                        padding: '2px 8px', 
+                        borderRadius: '999px', 
+                        background: 'rgba(0, 242, 254, 0.15)', 
+                        color: 'var(--cyan-core)', 
+                        fontWeight: 700 
+                      }}>
+                        {leader.stats.experience}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
+                      {leader.affiliation}
+                    </div>
+                    <div style={{ fontSize: '0.78rem', color: 'var(--cyan-core)', fontFamily: 'var(--font-mono)' }}>
+                      {leader.role}
+                    </div>
+                  </div>
+                </div>
+
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+                  {leader.bio}
+                </p>
+
+                {/* Specialties */}
+                <div style={{ marginBottom: '24px' }}>
+                  <div style={{ fontSize: '0.72rem', textTransform: 'uppercase', color: 'var(--text-dim)', marginBottom: '10px', fontFamily: 'var(--font-mono)' }}>
+                    Core Architecture Specialties:
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {leader.specialties.map((spec, sIdx) => (
+                      <div key={sIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-main)' }}>
+                        <CheckCircle2 size={15} color="var(--cyan-core)" />
+                        <span>{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '20px' }}>
+                <button
+                  onClick={() => {
+                    setView('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="btn-primary"
+                  style={{ width: '100%', padding: '12px', fontSize: '0.88rem', justifyContent: 'center' }}
+                >
+                  <Calendar size={15} />
+                  <span>Book Consultation with {leader.name}</span>
+                </button>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CLIENT IMPACT & CASE STUDIES */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <div className="badge-pill badge-violet" style={{ marginBottom: '14px' }}>
+            PROVEN CLIENT IMPACT
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '16px' }}>
+            Recent <span className="gradient-text">Consulting Deployments</span>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '700px', margin: '0 auto', fontSize: '1.05rem' }}>
+            Production systems engineered for institutional FinTech, global supply chain, and connected healthcare.
+          </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+          {PORTFOLIO.map(item => (
+            <div
+              key={item.id}
               className="glass-panel"
               style={{
                 padding: '32px',
                 borderRadius: '20px',
+                border: '1px solid var(--border-glass)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
-                  <div
-                    style={{
-                      width: '56px',
-                      height: '56px',
-                      borderRadius: '16px',
-                      background: author.id === 'bala' ? 'linear-gradient(135deg, #00f2fe 0%, #3b82f6 100%)' : 'linear-gradient(135deg, #7928ca 0%, #ec4899 100%)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'var(--font-mono)',
-                      fontWeight: 700,
-                      fontSize: '1.2rem',
-                      color: '#fff'
-                    }}
-                  >
-                    {author.initials}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
+                  <span style={{ fontSize: '0.75rem', color: item.accent, fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                    {item.category}
+                  </span>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
+                    {item.client}
+                  </span>
+                </div>
+
+                <h3 style={{ fontSize: '1.3rem', color: 'var(--text-main)', marginBottom: '10px' }}>
+                  {item.title}
+                </h3>
+
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '18px' }}>
+                  {item.description}
+                </p>
+
+                {/* Key Impact Metric Box */}
+                <div style={{ 
+                  padding: '12px 16px', 
+                  borderRadius: '12px', 
+                  background: 'rgba(0, 242, 254, 0.05)', 
+                  border: '1px solid rgba(0, 242, 254, 0.2)',
+                  marginBottom: '20px'
+                }}>
+                  <div style={{ fontSize: '0.7rem', color: 'var(--cyan-core)', textTransform: 'uppercase', fontWeight: 700, fontFamily: 'var(--font-mono)' }}>
+                    MEASURED ENTERPRISE IMPACT:
                   </div>
-                  <div>
-                    <div style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)' }}>
-                      {author.name}
-                    </div>
-                    <div style={{ fontSize: '0.88rem', color: author.id === 'bala' ? 'var(--cyan-core)' : 'var(--purple-accent)', fontWeight: 700 }}>
-                      {author.affiliation}
-                    </div>
-                    <div style={{ fontSize: '0.76rem', color: 'var(--text-dim)' }}>
-                      {author.role}
-                    </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-main)', fontWeight: 600, marginTop: '4px' }}>
+                    {item.impact}
                   </div>
                 </div>
 
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '20px' }}>
-                  {author.bio}
-                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                  {item.tags.map((tag, tIdx) => (
+                    <span 
+                      key={tIdx} 
+                      style={{ 
+                        fontSize: '0.72rem', 
+                        padding: '3px 8px', 
+                        borderRadius: '6px', 
+                        background: 'rgba(255, 255, 255, 0.04)', 
+                        border: '1px solid var(--border-glass)',
+                        color: 'var(--text-muted)' 
+                      }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              <div>
-                <button
-                  onClick={() => setView('courses')}
-                  className="btn-secondary"
-                  style={{ width: '100%', justifyContent: 'center', fontSize: '0.85rem' }}
-                >
-                  View Courses Authored by {author.name}
-                  <ArrowRight size={14} />
-                </button>
+              <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '14px', fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                Led by: {item.leadConsultant}
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* QUICK HOMEPAGE REQUIREMENT SCOPING BANNER */}
+      <section className="content-section" style={{ marginBottom: '80px' }}>
+        <div 
+          className="glass-panel" 
+          style={{ 
+            padding: '48px', 
+            borderRadius: '28px', 
+            border: '2px solid var(--border-glow)',
+            background: 'linear-gradient(135deg, rgba(8, 11, 35, 0.98) 0%, rgba(18, 24, 62, 0.9) 100%)',
+            textAlign: 'center'
+          }}
+        >
+          <div className="badge-pill badge-cyan" style={{ marginBottom: '16px' }}>
+            START YOUR CONSULTATION
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '18px' }}>
+            Ready to Scope Your Next <span className="gradient-text">Digital Product</span>?
+          </h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto 36px auto', fontSize: '1.1rem' }}>
+            Schedule a high-impact architectural scoping session with Bala and Srikanth. 
+            We analyze your requirements, review existing bottlenecks, and deliver an actionable technical blueprint within 24 hours.
+          </p>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '16px' }}>
+            <button
+              onClick={() => {
+                setView('contact');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="btn-primary"
+              style={{ padding: '16px 36px', fontSize: '1.05rem' }}
+            >
+              <span>Schedule Architecture Review</span>
+              <ArrowRight size={18} />
+            </button>
+
+            <button
+              onClick={() => {
+                setView('scope');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="btn-secondary"
+              style={{ padding: '16px 28px', fontSize: '1rem' }}
+            >
+              <Sliders size={18} color="var(--cyan-core)" />
+              <span>Launch 3D Scope Estimator</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

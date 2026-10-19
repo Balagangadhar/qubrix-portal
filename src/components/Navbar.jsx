@@ -6,13 +6,13 @@ import {
   Sparkles, 
   ArrowRight, 
   Layers, 
-  GraduationCap, 
-  Atom, 
+  Globe, 
   Smartphone, 
-  Laptop, 
+  Cpu, 
   Sun, 
   Moon,
-  FlaskConical
+  Calendar,
+  Sliders
 } from 'lucide-react';
 
 export default function Navbar({ currentView, setView, onOpenTerminal, theme, toggleTheme }) {
@@ -29,10 +29,11 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Web & Mobile Studio' },
-    { id: 'labs', label: 'Interactive Labs', badge: '3 Labs' },
-    { id: 'courses', label: 'Academy' },
-    { id: 'about', label: 'About' },
+    { id: 'capabilities', label: 'Capabilities', badge: 'Catalogue' },
+    { id: 'pricing', label: 'Pricing Calculator', badge: 'Live TCO' },
+    { id: 'services', label: 'Consulting Services' },
+    { id: 'scope', label: 'Scope Estimator', badge: '3D Tool' },
+    { id: 'about', label: 'Leadership' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -50,8 +51,8 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
         zIndex: 1000,
         width: '100%',
         backgroundColor: scrolled 
-          ? (theme === 'dark' ? 'rgba(3, 0, 20, 0.88)' : 'rgba(255, 255, 255, 0.88)')
-          : (theme === 'dark' ? 'rgba(3, 0, 20, 0.4)' : 'rgba(255, 255, 255, 0.4)'),
+          ? (theme === 'dark' ? 'rgba(3, 0, 20, 0.92)' : 'rgba(255, 255, 255, 0.92)')
+          : (theme === 'dark' ? 'rgba(3, 0, 20, 0.45)' : 'rgba(255, 255, 255, 0.45)'),
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
         borderBottom: scrolled ? '1px solid var(--border-glass)' : '1px solid transparent',
@@ -138,7 +139,7 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
                   fontWeight: 700
                 }}
               >
-                STUDIO & LABS
+                CONSULTING
               </span>
             </div>
             <div
@@ -151,7 +152,7 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
                 fontWeight: 600
               }}
             >
-              Web • Mobile • Frontier Tech
+              Web • Mobile • AI Enablement
             </div>
           </div>
         </div>
@@ -268,7 +269,7 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
               fontSize: '0.88rem'
             }}
           >
-            Start Project
+            <span>Book Consultation</span>
             <ArrowRight size={14} />
           </button>
 

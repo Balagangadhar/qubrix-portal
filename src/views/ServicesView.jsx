@@ -4,59 +4,82 @@ import {
   Cpu, 
   Palette, 
   Smartphone, 
-  Atom, 
+  Globe,
+  ShieldCheck, 
   ArrowRight, 
   CheckCircle2, 
   Sparkles, 
-  ExternalLink,
-  Calculator,
-  ShieldCheck,
+  Clock, 
   Zap,
-  Clock,
-  Compass
+  Sliders,
+  Calendar,
+  FileCheck,
+  Server
 } from 'lucide-react';
 import { SERVICES, PORTFOLIO } from '../data/servicesData';
+import { ENGAGEMENT_MODELS } from '../data/consultingScopeData';
 
 export default function ServicesView({ setView }) {
-  const [selectedService, setSelectedService] = useState('all');
-  const [activeCaseStudy, setActiveCaseStudy] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Cost & Scope Estimator State
-  const [projectType, setProjectType] = useState('ai');
-  const [complexity, setComplexity] = useState('enterprise');
-  const [timelineSpeed, setTimelineSpeed] = useState('accelerated');
-
-  const getEstimatedTimeline = () => {
-    if (timelineSpeed === 'sprint') return '4 - 6 Weeks (Ultra-Fast Track)';
-    if (timelineSpeed === 'accelerated') return '8 - 12 Weeks (Recommended)';
-    return '14 - 18 Weeks (Deep Custom R&D)';
-  };
-
-  const getEstimatedTeam = () => {
-    if (complexity === 'mvp') return '1 Lead Architect + 2 Full-Stack Engineers + 1 UI/UX Designer';
-    if (complexity === 'growth') return '1 Principal Architect + 3 Senior Engineers + 1 AI Specialist + 1 Product Designer';
-    return '1 Enterprise Systems Director + 4 Specialized Engineers + 1 AI Agent Scientist + 1 Quantum Consultant';
-  };
-
-  const filteredServices = selectedService === 'all' 
-    ? SERVICES 
-    : SERVICES.filter(s => s.id === selectedService);
+  const filteredServices = selectedCategory === 'all'
+    ? SERVICES
+    : SERVICES.filter(s => {
+        if (selectedCategory === 'web') return s.id === 'web-consulting';
+        if (selectedCategory === 'mobile') return s.id === 'mobile-consulting';
+        if (selectedCategory === 'ai') return s.id === 'ai-enablement';
+        if (selectedCategory === 'cloud') return s.id === 'cloud-resilience' || s.id === 'spatial-uiux';
+        return true;
+      });
 
   return (
-    <div style={{ paddingTop: '40px' }}>
+    <div style={{ paddingTop: '36px', paddingBottom: '90px' }}>
+      
       {/* Header */}
-      <section className="content-section" style={{ textAlign: 'center', marginBottom: '60px' }}>
-        <div className="badge-pill badge-cyan" style={{ marginBottom: '16px' }}>
+      <section className="content-section" style={{ textAlign: 'center', marginBottom: '50px' }}>
+        <div className="badge-pill badge-cyan" style={{ marginBottom: '14px' }}>
           <Layers size={14} />
-          QUBRIX STUDIO DIVISION
+          STRATEGIC TECHNICAL CONSULTING
         </div>
-        <h1 style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', marginBottom: '20px' }}>
+        <h1 style={{ fontSize: 'clamp(2.3rem, 5vw, 4rem)', marginBottom: '18px', letterSpacing: '-0.02em' }}>
           Bespoke Digital Design & <span className="gradient-text">Frontier Engineering</span>
         </h1>
-        <p style={{ color: '#94a3b8', maxWidth: '740px', margin: '0 auto', fontSize: '1.1rem', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--text-muted)', maxWidth: '760px', margin: '0 auto', fontSize: '1.12rem', lineHeight: 1.6 }}>
           We architect resilient, hyper-performant digital systems for forward-thinking enterprises.
-          From autonomous agentic workflows and quantum prototyping to silky smooth spatial interfaces.
+          From autonomous agentic workflows and multi-agent RAG to fluid native mobile apps and high-throughput web platforms.
         </p>
+
+        {/* Filter Pills */}
+        <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '10px', marginTop: '30px' }}>
+          {[
+            { id: 'all', label: 'All Consulting Practices' },
+            { id: 'web', label: 'Web Applications' },
+            { id: 'mobile', label: 'Mobile Engineering' },
+            { id: 'ai', label: 'AI Enablement' },
+            { id: 'cloud', label: 'Cloud & Design Systems' }
+          ].map(pill => {
+            const isSelected = selectedCategory === pill.id;
+            return (
+              <button
+                key={pill.id}
+                onClick={() => setSelectedCategory(pill.id)}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: '999px',
+                  background: isSelected ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.04)',
+                  border: isSelected ? '1px solid var(--cyan-core)' : '1px solid var(--border-glass)',
+                  color: isSelected ? 'var(--cyan-core)' : 'var(--text-muted)',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                {pill.label}
+              </button>
+            );
+          })}
+        </div>
       </section>
 
       {/* Services Grid */}
@@ -65,419 +88,250 @@ export default function ServicesView({ setView }) {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap: '28px'
+            gap: '30px'
           }}
         >
-          {SERVICES.map((srv) => (
+          {filteredServices.map(srv => (
             <div
               key={srv.id}
               className="glass-panel"
               style={{
-                padding: '36px',
-                borderRadius: '20px',
+                padding: '38px',
+                borderRadius: '24px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                border: '1px solid var(--border-glass)',
                 position: 'relative'
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '22px' }}>
                   <div
                     style={{
-                      width: '50px',
-                      height: '50px',
+                      width: '52px',
+                      height: '52px',
                       borderRadius: '14px',
                       background: 'rgba(255, 255, 255, 0.05)',
-                      border: `1px solid ${srv.accent}50`,
+                      border: `1px solid ${srv.accent}60`,
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      boxShadow: `0 0 20px ${srv.accent}20`
                     }}
                   >
-                    {srv.icon === 'Layers' && <Layers size={24} color={srv.accent} />}
-                    {srv.icon === 'Cpu' && <Cpu size={24} color={srv.accent} />}
-                    {srv.icon === 'Palette' && <Palette size={24} color={srv.accent} />}
-                    {srv.icon === 'Smartphone' && <Smartphone size={24} color={srv.accent} />}
-                    {srv.icon === 'Atom' && <Atom size={24} color={srv.accent} />}
+                    {srv.id === 'web-consulting' && <Globe size={26} color={srv.accent} />}
+                    {srv.id === 'mobile-consulting' && <Smartphone size={26} color={srv.accent} />}
+                    {srv.id === 'ai-enablement' && <Cpu size={26} color={srv.accent} />}
+                    {srv.id === 'spatial-uiux' && <Palette size={26} color={srv.accent} />}
+                    {srv.id === 'cloud-resilience' && <ShieldCheck size={26} color={srv.accent} />}
                   </div>
 
                   <span
                     style={{
-                      fontSize: '0.74rem',
+                      fontSize: '0.72rem',
                       fontFamily: 'var(--font-mono)',
                       color: srv.accent,
                       background: `${srv.accent}15`,
                       padding: '4px 10px',
                       borderRadius: '999px',
-                      border: `1px solid ${srv.accent}40`
+                      fontWeight: 700
                     }}
                   >
-                    Enterprise Ready
+                    ENTERPRISE GRADE
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.45rem', marginBottom: '8px' }}>{srv.title}</h3>
-                <div style={{ color: srv.accent, fontSize: '0.85rem', fontWeight: 600, marginBottom: '14px' }}>
+                <h3 style={{ fontSize: '1.45rem', marginBottom: '8px', color: 'var(--text-main)' }}>
+                  {srv.title}
+                </h3>
+                <div style={{ fontSize: '0.82rem', color: srv.accent, fontFamily: 'var(--font-subheading)', fontWeight: 600, marginBottom: '14px' }}>
                   {srv.tagline}
                 </div>
-                <p style={{ color: '#94a3b8', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '22px' }}>
+
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '22px' }}>
                   {srv.description}
                 </p>
 
+                {/* Features List */}
                 <div style={{ marginBottom: '24px' }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#e2e8f0', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>
-                    Core Capabilities
+                  <div style={{ fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginBottom: '10px' }}>
+                    What We Engineer & Advise:
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {srv.features.map((feat, idx) => (
-                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: '#cbd5e1' }}>
-                        <CheckCircle2 size={14} color={srv.accent} />
+                    {srv.features.map((feat, fIdx) => (
+                      <div key={fIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.83rem', color: 'var(--text-main)' }}>
+                        <CheckCircle2 size={15} color={srv.accent} />
                         <span>{feat}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-              </div>
 
-              <div>
-                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '16px', marginBottom: '20px' }}>
-                  <div style={{ fontSize: '0.75rem', color: '#64748b', marginBottom: '6px' }}>
+                {/* Deliverables Box */}
+                <div
+                  style={{
+                    padding: '14px 16px',
+                    borderRadius: '12px',
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    border: '1px solid var(--border-glass)',
+                    marginBottom: '24px'
+                  }}
+                >
+                  <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', marginBottom: '6px', fontFamily: 'var(--font-mono)' }}>
                     Key Deliverables:
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {srv.deliverables.map((deliv, idx) => (
+                    {srv.deliverables.map((del, dIdx) => (
                       <span
-                        key={idx}
+                        key={dIdx}
                         style={{
                           fontSize: '0.72rem',
-                          padding: '3px 8px',
-                          borderRadius: '6px',
-                          background: 'rgba(255, 255, 255, 0.04)',
-                          color: '#94a3b8'
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          color: 'var(--text-muted)'
                         }}
                       >
-                        {deliv}
+                        {del}
                       </span>
                     ))}
                   </div>
                 </div>
 
+              </div>
+
+              {/* Action Strip */}
+              <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: '0.76rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
+                  {srv.metrics}
+                </span>
+
                 <button
-                  onClick={() => setView('contact')}
-                  className="btn-secondary"
-                  style={{ width: '100%', justifyContent: 'center', fontSize: '0.88rem' }}
+                  onClick={() => {
+                    setView('contact');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="btn-primary"
+                  style={{ padding: '8px 16px', fontSize: '0.82rem' }}
                 >
-                  Request Architecture Blueprint
-                  <ArrowRight size={14} />
+                  Consult Now
+                  <ArrowRight size={13} />
                 </button>
               </div>
+
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Portfolio / Case Studies */}
-      <section className="content-section" style={{ marginBottom: '100px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <div className="badge-pill badge-violet" style={{ marginBottom: '12px' }}>
-            Flagship Deployments
+      {/* ENGAGEMENT MODELS & CONSULTING BLUEPRINT */}
+      <section className="content-section" style={{ marginBottom: '90px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <div className="badge-pill badge-violet" style={{ marginBottom: '14px' }}>
+            HOW WE ENGAGE
           </div>
-          <h2 style={{ fontSize: '2.4rem', marginBottom: '12px' }}>
-            Featured Project Showcase
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)', marginBottom: '16px' }}>
+            Structured, Predictable <span className="gradient-text">Delivery Pods</span>
           </h2>
-          <p style={{ color: '#94a3b8', maxWidth: '640px', margin: '0 auto', fontSize: '1rem' }}>
-            A curated glimpse of high-impact platforms engineered by the Qubrix Studio team.
+          <p style={{ color: 'var(--text-muted)', maxWidth: '720px', margin: '0 auto', fontSize: '1.05rem' }}>
+            Whether you need a rapid 2-week architectural diagnostic or an end-to-end engineering pod to build and launch your digital product.
           </p>
         </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap: '24px'
-          }}
-        >
-          {PORTFOLIO.map((item) => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+          {ENGAGEMENT_MODELS.map((model, idx) => (
             <div
-              key={item.id}
+              key={model.id}
               className="glass-panel"
               style={{
-                padding: '32px',
-                borderRadius: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                padding: '36px',
+                borderRadius: '24px',
+                border: '1px solid var(--border-glass)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between'
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                  <span
-                    style={{
-                      fontSize: '0.74rem',
-                      fontFamily: 'var(--font-mono)',
-                      color: item.accent,
-                      background: `${item.accent}15`,
-                      padding: '3px 10px',
-                      borderRadius: '999px'
-                    }}
-                  >
-                    {item.category}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+                  <span style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', padding: '3px 8px', borderRadius: '999px', background: 'rgba(0, 242, 254, 0.1)', color: 'var(--cyan-core)', fontWeight: 700 }}>
+                    {model.badge}
                   </span>
-                  <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-                    Client: {item.client}
+                  <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--cyan-core)', fontFamily: 'var(--font-mono)' }}>
+                    {model.duration}
                   </span>
                 </div>
 
-                <h3 style={{ fontSize: '1.35rem', marginBottom: '10px' }}>{item.title}</h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '18px' }}>
-                  {item.description}
+                <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', marginBottom: '12px' }}>
+                  {model.title}
+                </h3>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '22px' }}>
+                  {model.description}
                 </p>
 
-                <div
-                  style={{
-                    padding: '12px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
-                    marginBottom: '20px',
-                    fontSize: '0.84rem'
-                  }}
-                >
-                  <span style={{ color: item.accent, fontWeight: 700 }}>Impact: </span>
-                  <span style={{ color: '#e2e8f0' }}>{item.impact}</span>
-                </div>
-              </div>
-
-              <div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
-                  {item.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        fontSize: '0.72rem',
-                        padding: '3px 8px',
-                        borderRadius: '4px',
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        color: '#cbd5e1'
-                      }}
-                    >
-                      {tag}
-                    </span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '24px' }}>
+                  {model.deliverables.map((item, iIdx) => (
+                    <div key={iIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.82rem', color: 'var(--text-main)' }}>
+                      <CheckCircle2 size={15} color="#10b981" />
+                      <span>{item}</span>
+                    </div>
                   ))}
                 </div>
+              </div>
 
+              <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '20px' }}>
                 <button
-                  onClick={() => setView('contact')}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: item.accent,
-                    fontSize: '0.86rem',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: 0
+                  onClick={() => {
+                    setView('scope');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
+                  className="btn-secondary"
+                  style={{ width: '100%', padding: '12px', fontSize: '0.88rem', justifyContent: 'center' }}
                 >
-                  Discuss Similar Build for Your Business
-                  <ArrowRight size={14} />
+                  <Sliders size={14} color="var(--cyan-core)" />
+                  <span>Configure {model.title.split(' ')[0]} Scope</span>
                 </button>
               </div>
+
             </div>
           ))}
         </div>
       </section>
 
-      {/* Interactive Project Scope & Timeline Estimator */}
-      <section className="content-section" style={{ marginBottom: '100px' }}>
+      {/* FINAL CONSULTING CTA BANNER */}
+      <section className="content-section">
         <div
           className="glass-panel"
           style={{
             padding: '44px',
             borderRadius: '24px',
-            border: '1px solid rgba(0, 242, 254, 0.3)',
-            background: 'linear-gradient(135deg, rgba(8, 12, 38, 0.95) 0%, rgba(16, 20, 52, 0.9) 100%)',
-            boxShadow: '0 20px 60px rgba(0, 242, 254, 0.1)'
+            border: '2px solid var(--border-glow)',
+            textAlign: 'center',
+            background: 'linear-gradient(135deg, rgba(8, 11, 35, 0.95) 0%, rgba(18, 24, 62, 0.9) 100%)'
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-            <Calculator size={24} color="#00f2fe" />
-            <h2 style={{ fontSize: '1.8rem', color: '#fff' }}>
-              Interactive Scope & Timeline Configurator
-            </h2>
-          </div>
-
-          <p style={{ color: '#94a3b8', fontSize: '0.95rem', marginBottom: '32px', maxWidth: '700px' }}>
-            Select your project parameters to simulate estimated engineering sprints, architecture composition,
-            and deployment timeframes with Qubrix Studio.
-          </p>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '28px',
-              marginBottom: '36px'
-            }}
-          >
-            {/* Control 1: Domain */}
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '10px' }}>
-                1. System Category
-              </label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {[
-                  { id: 'ai', label: 'Agentic AI & Multi-Agent Swarm' },
-                  { id: 'fullstack', label: 'Full-Stack Web & Cloud Microservices' },
-                  { id: 'mobile', label: 'Cross-Platform Mobile App (iOS/Android)' },
-                  { id: 'quantum', label: 'Post-Quantum Crypto & Qiskit R&D' }
-                ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setProjectType(item.id)}
-                    style={{
-                      background: projectType === item.id ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                      border: projectType === item.id ? '1px solid #00f2fe' : '1px solid rgba(255, 255, 255, 0.08)',
-                      color: projectType === item.id ? '#00f2fe' : '#94a3b8',
-                      padding: '10px 14px',
-                      borderRadius: '8px',
-                      textAlign: 'left',
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Control 2: Scale */}
-            <div>
-              <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: '#e2e8f0', marginBottom: '10px' }}>
-                2. System Scale & SLA
-              </label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {[
-                  { id: 'mvp', label: 'Venture MVP (High Velocity)' },
-                  { id: 'growth', label: 'Growth Scale (High Throughput & Resiliency)' },
-                  { id: 'enterprise', label: 'Enterprise Grade (Multi-Region & Strict Compliance)' }
-                ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setComplexity(item.id)}
-                    style={{
-                      background: complexity === item.id ? 'rgba(168, 85, 247, 0.18)' : 'rgba(255, 255, 255, 0.03)',
-                      border: complexity === item.id ? '1px solid #c084fc' : '1px solid rgba(255, 255, 255, 0.08)',
-                      color: complexity === item.id ? '#c084fc' : '#94a3b8',
-                      padding: '10px 14px',
-                      borderRadius: '8px',
-                      textAlign: 'left',
-                      fontSize: '0.85rem',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s'
-                    }}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Result Box */}
-            <div
-              style={{
-                background: 'rgba(3, 0, 20, 0.7)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '16px',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-            >
-              <div>
-                <div style={{ fontSize: '0.78rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                  Projected Timeline & Squad
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#00f2fe', fontWeight: 700, fontSize: '1.15rem', marginBottom: '12px' }}>
-                  <Clock size={18} />
-                  {getEstimatedTimeline()}
-                </div>
-                <div style={{ fontSize: '0.84rem', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '16px' }}>
-                  <strong>Squad Composition:</strong> {getEstimatedTeam()}
-                </div>
-                <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>
-                  Includes automated CI/CD pipelines, Dockerized runtime, comprehensive testing, and 30-day post-launch warranty.
-                </div>
-              </div>
-
-              <button
-                onClick={() => setView('contact')}
-                className="btn-primary"
-                style={{ marginTop: '20px', width: '100%', justifyContent: 'center' }}
-              >
-                Book Technical Scoping Session
-                <ArrowRight size={14} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Qubrix Velocity Framework */}
-      <section className="content-section" style={{ marginBottom: '80px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <h2 style={{ fontSize: '2.2rem', marginBottom: '12px' }}>
-            The Qubrix Velocity Framework
+          <h2 style={{ fontSize: '2.2rem', marginBottom: '16px' }}>
+            Have a Specific Architecture Challenge?
           </h2>
-          <p style={{ color: '#94a3b8', maxWidth: '640px', margin: '0 auto' }}>
-            How our studio delivers world-class software at unprecedented speed.
+          <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto 30px auto', fontSize: '1.05rem' }}>
+            Book a direct scoping session with Bala and Srikanth. We'll evaluate your system design, performance bottlenecks, or AI roadmap.
           </p>
-        </div>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '20px'
-          }}
-        >
-          {[
-            { step: '01', title: 'System Blueprint', desc: 'Architecture mapping, schema definition, API contract specs, and threat modeling.' },
-            { step: '02', title: 'Spatial Prototype', desc: 'Clickable Figma systems, motion physics curves, and UX flow validation.' },
-            { step: '03', title: 'Quantum-Scale Build', desc: 'Continuous deployment sprints, test-driven logic, microservice orchestration.' },
-            { step: '04', title: 'Autonomous QA & Launch', desc: 'Load testing, penetration auditing, edge CDN propagation, and production release.' }
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="glass-panel"
-              style={{ padding: '28px', borderRadius: '16px' }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: '1.8rem',
-                  fontWeight: 800,
-                  color: '#00f2fe',
-                  marginBottom: '12px',
-                  opacity: 0.8
-                }}
-              >
-                {item.step}
-              </div>
-              <h3 style={{ fontSize: '1.2rem', marginBottom: '8px' }}>{item.title}</h3>
-              <p style={{ color: '#94a3b8', fontSize: '0.88rem', lineHeight: 1.6 }}>{item.desc}</p>
-            </div>
-          ))}
+          <button
+            onClick={() => {
+              setView('contact');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="btn-primary"
+            style={{ padding: '16px 36px', fontSize: '1rem' }}
+          >
+            <Calendar size={18} />
+            <span>Schedule Architecture Scoping Session</span>
+          </button>
         </div>
       </section>
+
     </div>
   );
 }

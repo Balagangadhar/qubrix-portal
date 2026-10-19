@@ -1,33 +1,51 @@
 export const SERVICES = [
   {
-    id: 'fullstack-arch',
-    title: 'Full-Stack & Cloud Architecture',
+    id: 'web-consulting',
+    title: 'Enterprise Web Application Consulting',
     tagline: 'High-Throughput, Resilient Digital Platforms Built for Enterprise Scale',
     icon: 'Layers',
     accent: '#00f2fe',
-    description: 'We engineer end-to-end web applications with modern micro-frontends, event-driven backends, and multi-region cloud resilience that effortlessly handles millions of transactions.',
+    description: 'We architect and build end-to-end web applications with modern micro-frontends, event-driven backends, and multi-region cloud resilience that effortlessly handle millions of transactions.',
     features: [
       'Next.js 15 & React 19 micro-frontend architectures',
       'High-throughput distributed APIs in Go, Node.js & Rust',
       'Multi-cloud Kubernetes deployments with zero-downtime CI/CD',
       'Real-time streaming pipelines with Redis, Kafka & WebSockets'
     ],
-    deliverables: ['Production Cloud Architecture', 'High-Performance APIs', 'Comprehensive Test Coverage', 'Observability Dashboard']
+    deliverables: ['Production Cloud Architecture', 'High-Performance Web Platform', 'API & Microservice Contracts', 'Observability Dashboard'],
+    metrics: '99.99% Uptime SLA • <15ms Edge Response Times'
   },
   {
-    id: 'agentic-ai-dev',
-    title: 'Agentic AI & Custom LLM Systems',
+    id: 'mobile-consulting',
+    title: 'Mobile Application Engineering',
+    tagline: 'Native Performance, Fluid Gestures, Cross-Platform Efficiency',
+    icon: 'Smartphone',
+    accent: '#3b82f6',
+    description: 'We construct beautiful mobile experiences for iOS and Android with buttery smooth framerates, offline-first architectures, biometric security, and native device hardware utilization.',
+    features: [
+      'React Native & Flutter high-performance multi-platform apps',
+      'Native Swift (iOS) and Kotlin (Android) architecture consulting',
+      'Offline-first synchronization with SQLite & WatermelonDB',
+      'App Store & Play Store publication and automated OTA update pipelines'
+    ],
+    deliverables: ['iOS & Android Production Builds', 'App Store Submissions', 'Push Notification Engine', 'Telemetry & Analytics Integration'],
+    metrics: '60 FPS Gesture Fluidity • 4.9 App Store Average Rating'
+  },
+  {
+    id: 'ai-enablement',
+    title: 'Enterprise AI Enablement & LLM Systems',
     tagline: 'Autonomous AI Agents that Reason, Decide, and Execute Workflows',
     icon: 'Cpu',
-    accent: '#7928ca',
+    accent: '#a855f7',
     description: 'Move past static chatbots. We design multi-agent cognitive systems capable of executing complex multi-step enterprise workflows with deterministic guardrails and hybrid knowledge retrieval.',
     features: [
       'Autonomous multi-agent orchestration (LangGraph, Swarm)',
       'Enterprise-grade hybrid vector search & GraphRAG',
-      'Deterministic safety guardrails & automated evaluation',
+      'Deterministic safety guardrails & automated evaluation pipelines',
       'Self-hosted local LLM pipelines for data privacy & compliance'
     ],
-    deliverables: ['Custom AI Agents', 'Vector Knowledge Bases', 'Integration APIs', 'Security & Evaluation Reports']
+    deliverables: ['Custom AI Agents & Swarms', 'Vector Knowledge Bases', 'Integration APIs', 'Security & Evaluation Reports'],
+    metrics: '70%+ Reduction in Manual Processing • Enterprise-Grade Privacy'
   },
   {
     id: 'spatial-uiux',
@@ -38,83 +56,74 @@ export const SERVICES = [
     description: 'We sculpt digital experiences that look like they arrived from the year 2035. Dark mode ergonomics, rich glassmorphism, 3D elements, and micro-animations designed for maximum emotional resonance.',
     features: [
       'Bespoke design systems with tokenized Figma libraries',
-      'Fluid 60fps micro-animations and interactive data canvas',
+      'Fluid 60fps micro-animations and interactive 3D WebGL data canvas',
       'High-fidelity interactive prototypes tested with real users',
       'WCAG AAA accessible layouts optimized for mobile and desktop'
     ],
-    deliverables: ['Figma Design System', 'Component Code Tokens', 'Interactive Prototype', 'UX Audit & Strategy']
+    deliverables: ['Figma Design System Tokens', 'Interactive WebGL Canvas Code', 'Interactive Prototype', 'UX Audit & Conversion Strategy'],
+    metrics: '3.4x Engagement Lift • Tokenized Design Velocity'
   },
   {
-    id: 'mobile-engineering',
-    title: 'Mobile App Engineering',
-    tagline: 'Native Performance, Fluid Gestures, Cross-Platform Efficiency',
-    icon: 'Smartphone',
-    accent: '#3b82f6',
-    description: 'We construct beautiful mobile experiences for iOS and Android with buttery smooth framerates, offline-first architectures, biometric security, and native device hardware utilization.',
-    features: [
-      'React Native & Flutter high-performance multi-platform apps',
-      'Offline-first synchronization with SQLite & WatermelonDB',
-      'Biometric authentication and hardware-accelerated graphics',
-      'App Store & Play Store publication and automated OTA updates'
-    ],
-    deliverables: ['iOS & Android Builds', 'App Store Submissions', 'Push Notification Engine', 'Analytics Integration']
-  },
-  {
-    id: 'quantum-rnd',
-    title: 'Quantum Computing Advisory & R&D',
-    tagline: 'Post-Quantum Cryptography & Quantum Algorithm Prototyping',
-    icon: 'Atom',
+    id: 'cloud-resilience',
+    title: 'Cloud Architecture & DevOps Consulting',
+    tagline: 'Zero-Downtime Infrastructure, FinOps & Security Hardening',
+    icon: 'ShieldCheck',
     accent: '#10b981',
-    description: 'Prepare your enterprise for the quantum advantage. We assist forward-looking enterprises in benchmarking quantum algorithms, testing Qiskit prototypes, and migrating towards post-quantum cryptographic security.',
+    description: 'Lead architect guidance from Bala (14+ yrs JPMorganChase) on structuring resilient AWS/GCP cloud platforms, zero-trust security perimeter, automated CI/CD pipelines, and cloud cost optimization.',
     features: [
-      'Quantum algorithm simulation & feasibility audits',
-      'Post-Quantum Cryptography (PQC) readiness evaluations',
-      'Quantum Optimization modeling for logistics and finance',
-      'Executive quantum literacy and engineering advisory'
+      'Multi-region high-availability disaster recovery setup',
+      'Zero-trust security compliance & SOC2 audit preparedness',
+      'Kubernetes orchestration & containerized microservices',
+      'FinOps cloud cost reduction analysis and resource tuning'
     ],
-    deliverables: ['Feasibility Analysis', 'Proof-of-Concept Circuits', 'PQC Migration Strategy', 'Executive Briefing']
+    deliverables: ['Cloud Infrastructure as Code (Terraform)', 'Kubernetes Cluster Blueprints', 'Disaster Recovery Plan', 'FinOps Cost Audit'],
+    metrics: '40% Cloud Cost Savings • Zero-Downtime Releases'
   }
 ];
 
 export const PORTFOLIO = [
   {
-    id: 'nexus-vault',
-    title: 'NexusVault — Post-Quantum FinTech Engine',
+    id: 'fintech-trading',
+    title: 'NexusTrade — Real-Time Institutional Trading Platform',
     client: 'Global FinTech Consortium',
-    category: 'Full Stack & Security',
+    category: 'Web App & Cloud Architecture',
     accent: '#00f2fe',
-    description: 'An institutional asset transaction engine featuring lattice-based cryptography, sub-millisecond execution times, and a futuristic dark spatial trading terminal.',
-    impact: 'Processes ₹3,200 Cr+ in daily transaction simulations with zero latency degradation.',
-    tags: ['React 19', 'Go Microservices', 'Post-Quantum Cryptography', 'WebSocket Grid']
+    description: 'An institutional asset transaction engine featuring sub-millisecond execution times, WebSocket streaming order books, and a futuristic dark spatial trading terminal.',
+    impact: 'Processes $400M+ in daily transaction volume with zero latency spikes or degradation.',
+    tags: ['React 19', 'Go Microservices', 'Kafka', 'WebSocket Grid', 'AWS Multi-Region'],
+    leadConsultant: 'Bala (Lead Architect)'
   },
   {
-    id: 'cognix-swarm',
-    title: 'CognixSwarm — Autonomous Logistics Fleet',
-    client: 'SupplyChain HyperScale',
-    category: 'Agentic AI',
-    accent: '#7928ca',
+    id: 'health-mobile',
+    title: 'PulseVital — Connected Patient Telehealth & Device Sync',
+    client: 'HealthTech Innovations',
+    category: 'Mobile Application Engineering',
+    accent: '#3b82f6',
+    description: 'A native iOS and Android application with offline-first synchronization, BLE medical sensor telemetry, and HIPAA-compliant biometric patient records.',
+    impact: 'Deployed across 120,000+ patients with a 4.9-star App Store rating and instant offline data sync.',
+    tags: ['React Native', 'Swift iOS Native', 'WatermelonDB', 'Bluetooth LE', 'HIPAA Secure'],
+    leadConsultant: 'Srikanth (Mobile Lead)'
+  },
+  {
+    id: 'agentic-supply',
+    title: 'CognixSwarm — Autonomous Supply Chain Agent Fleet',
+    client: 'SupplyChain Global Logistics',
+    category: 'Enterprise AI Enablement',
+    accent: '#a855f7',
     description: 'A network of 48 collaborating AI agents managing real-time inventory rebalancing, automated freight negotiations, and predictive anomaly triage.',
-    impact: 'Reduced human dispatch interventions by 73% within 90 days of deployment.',
-    tags: ['Multi-Agent Swarm', 'LangGraph', 'FastAPI', 'Distributed Graph DB']
+    impact: 'Reduced human dispatch interventions by 73% and accelerated shipment routing by 4x.',
+    tags: ['Multi-Agent Swarm', 'LangGraph', 'FastAPI', 'Qdrant Vector DB', 'Claude API'],
+    leadConsultant: 'Bala & Srikanth (AI Architecture)'
   },
   {
-    id: 'qubit-cloud',
-    title: 'QubitLab — Cloud Quantum Circuit Visualizer',
-    client: 'Quantum Research Alliance',
-    category: 'Quantum Tech & UI',
+    id: 'enterprise-saas',
+    title: 'AuraCloud — Multi-Tenant B2B Workspace & Copilot',
+    client: 'Enterprise Productivity Cloud',
+    category: 'Full-Stack Web & AI Enablement',
     accent: '#10b981',
-    description: 'Interactive web-based Bloch sphere simulator and quantum circuit builder compiling visual logic directly into OpenQASM 3.0 code.',
-    impact: 'Adopted by 14,000+ quantum researchers and academic institutions worldwide.',
-    tags: ['WebGL Canvas', 'Qiskit Bridge', 'Next.js', 'Vector Mathematics']
-  },
-  {
-    id: 'aurora-pay',
-    title: 'AuroraPay — Biometric Spatial Mobile Wallet',
-    client: 'NeoBank Innovations',
-    category: 'Mobile & UX',
-    accent: '#ec4899',
-    description: 'Sleek, gesture-driven mobile banking experience designed with futuristic dark glassmorphism, contextual micro-haptics, and instant cross-border settlement.',
-    impact: '4.9/5 star App Store rating with over 650,000 active monthly transacting users.',
-    tags: ['React Native', 'Figma Design System', 'Zero-Knowledge Proofs', 'iOS/Android']
+    description: 'Complete architecture redesign migrating a legacy monolithic system to modular Next.js micro-frontends with embedded generative AI assistants for enterprise teams.',
+    impact: 'Shortened customer onboarding time by 60% and scaled from 10k to 250k daily active enterprise users.',
+    tags: ['Next.js 15', 'TypeScript', 'Node.js Microservices', 'Tailored RAG', 'Kubernetes'],
+    leadConsultant: 'Bala & Srikanth'
   }
 ];

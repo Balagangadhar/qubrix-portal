@@ -6,8 +6,9 @@ import TerminalDrawer from './components/TerminalDrawer';
 
 import HomeView from './views/HomeView';
 import ServicesView from './views/ServicesView';
-import CoursesView from './views/CoursesView';
-import LabsView from './views/LabsView';
+import ScopeView from './views/ScopeView';
+import CapabilitiesView from './views/CapabilitiesView';
+import PricingCalculatorView from './views/PricingCalculatorView';
 import AboutView from './views/AboutView';
 import ContactView from './views/ContactView';
 
@@ -16,7 +17,7 @@ import ChatbotWidget from './components/ChatbotWidget';
 export default function App() {
   const [currentView, setCurrentView] = useState('home');
   const [terminalOpen, setTerminalOpen] = useState(false);
-  const [selectedCourseForEnrollment, setSelectedCourseForEnrollment] = useState(null);
+  const [selectedScopeForBooking, setSelectedScopeForBooking] = useState(null);
 
   // Theme Management (Dark / Light)
   const [theme, setTheme] = useState(() => {
@@ -71,15 +72,31 @@ export default function App() {
             setView={setCurrentView} 
           />
         )}
-        {currentView === 'labs' && (
-          <LabsView 
+        {currentView === 'scope' && (
+          <ScopeView 
             setView={setCurrentView} 
+            onSelectScopeForBooking={setSelectedScopeForBooking}
           />
         )}
-        {currentView === 'courses' && (
-          <CoursesView 
+        {currentView === 'capabilities' && (
+          <CapabilitiesView 
             setView={setCurrentView} 
-            setSelectedCourseForEnrollment={setSelectedCourseForEnrollment} 
+            onSelectCapabilitiesForScope={(caps) => {
+              // Can pass caps directly into ScopeView
+            }}
+          />
+        )}
+        {currentView === 'pricing' && (
+          <PricingCalculatorView 
+            setView={setCurrentView} 
+            onSelectBudgetForContact={(estimate) => {
+              setSelectedScopeForBooking({
+                domain: 'Custom Services Estimation',
+                engagement: `${estimate.currency} ${estimate.firstYearTCO.toLocaleString()} (1st Year TCO)`,
+                duration: `${estimate.billingCycle.toUpperCase()} Infrastructure Plan`,
+                notes: `Configured Services: ${estimate.servicesCount} items | Setup: ${estimate.currency} ${estimate.oneTime.toLocaleString()} | Recurring: ${estimate.currency} ${estimate.monthly.toLocaleString()}/mo (${estimate.currency} ${estimate.yearly.toLocaleString()}/yr)`
+              });
+            }}
           />
         )}
         {currentView === 'about' && (
@@ -89,7 +106,7 @@ export default function App() {
         )}
         {currentView === 'contact' && (
           <ContactView 
-            selectedCourseForEnrollment={selectedCourseForEnrollment} 
+            selectedScopeForBooking={selectedScopeForBooking} 
           />
         )}
       </main>

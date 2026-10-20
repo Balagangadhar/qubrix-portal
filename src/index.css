@@ -339,6 +339,15 @@ h1, h2, h3, h4, h5, h6 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+html, body, #root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 .content-section {
@@ -346,6 +355,42 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+/* Custom Sleek Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.45);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.16);
+}
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(2, 132, 199, 0.45);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+
+/* Utility to hide scrollbars completely where desired */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Animations */
@@ -390,4 +435,72 @@ h1, h2, h3, h4, h5, h6 {
   background: #0f172a;
   border-color: rgba(0, 0, 0, 0.15);
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
+}
+
+/* Comprehensive Responsive Breakpoints */
+@media (max-width: 960px) {
+  .hero-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    min-height: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    padding: 0 16px !important;
+  }
+  .glass-panel {
+    padding: 22px !important;
+    border-radius: 20px !important;
+  }
+  .hero-headline {
+    font-size: clamp(2rem, 7vw, 2.75rem) !important;
+    line-height: 1.15 !important;
+  }
+  .hero-subtitle {
+    font-size: 0.96rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 24px !important;
+  }
+  .hero-actions-container {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .hero-actions-container button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .hero-metrics-strip {
+    gap: 12px !important;
+    padding-top: 18px !important;
+  }
+  .hero-metrics-strip > div > div:first-child {
+    font-size: 1.25rem !important;
+  }
+  .hero-metrics-strip > div > div:last-child {
+    font-size: 0.68rem !important;
+  }
+  .three-canvas-container {
+    min-height: 400px !important;
+    height: 400px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-metrics-strip {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .hero-metrics-strip > div > div:first-child {
+    font-size: 1.1rem !important;
+  }
+  .hero-metrics-strip > div > div:last-child {
+    font-size: 0.62rem !important;
+  }
+  .three-canvas-container {
+    min-height: 360px !important;
+    height: 360px !important;
+  }
 }

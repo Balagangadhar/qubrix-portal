@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ParticleBackground from './components/ParticleBackground';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import TerminalDrawer from './components/TerminalDrawer';
 
 import HomeView from './views/HomeView';
 import ServicesView from './views/ServicesView';
-import ScopeView from './views/ScopeView';
 import CapabilitiesView from './views/CapabilitiesView';
 import PricingCalculatorView from './views/PricingCalculatorView';
 import AboutView from './views/AboutView';
@@ -16,7 +14,6 @@ import ChatbotWidget from './components/ChatbotWidget';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('home');
-  const [terminalOpen, setTerminalOpen] = useState(false);
   const [selectedScopeForBooking, setSelectedScopeForBooking] = useState(null);
 
   // Theme Management (Dark / Light)
@@ -33,18 +30,6 @@ export default function App() {
     setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  // Global keyboard shortcut for Terminal Drawer (Ctrl+K / Cmd+K)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        setTerminalOpen(prev => !prev);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
   return (
     <div className="app-container">
       {/* Background Quantum Mesh & Nebulae */}
@@ -54,7 +39,6 @@ export default function App() {
       <Navbar 
         currentView={currentView} 
         setView={setCurrentView} 
-        onOpenTerminal={() => setTerminalOpen(true)}
         theme={theme}
         toggleTheme={toggleTheme}
       />
@@ -64,7 +48,6 @@ export default function App() {
         {currentView === 'home' && (
           <HomeView 
             setView={setCurrentView} 
-            onOpenTerminal={() => setTerminalOpen(true)} 
           />
         )}
         {currentView === 'services' && (
@@ -72,18 +55,9 @@ export default function App() {
             setView={setCurrentView} 
           />
         )}
-        {currentView === 'scope' && (
-          <ScopeView 
-            setView={setCurrentView} 
-            onSelectScopeForBooking={setSelectedScopeForBooking}
-          />
-        )}
         {currentView === 'capabilities' && (
           <CapabilitiesView 
             setView={setCurrentView} 
-            onSelectCapabilitiesForScope={(caps) => {
-              // Can pass caps directly into ScopeView
-            }}
           />
         )}
         {currentView === 'pricing' && (
@@ -114,17 +88,7 @@ export default function App() {
       {/* Footer */}
       <Footer 
         setView={setCurrentView} 
-        onOpenTerminal={() => setTerminalOpen(true)} 
         theme={theme}
-      />
-
-      {/* Interactive Quantum Terminal Drawer */}
-      <TerminalDrawer 
-        isOpen={terminalOpen} 
-        onClose={() => setTerminalOpen(false)} 
-        onNavigate={(viewId) => setCurrentView(viewId)}
-        theme={theme}
-        toggleTheme={toggleTheme}
       />
 
       {/* Floating AI Chatbot Concierge */}
@@ -135,3 +99,4 @@ export default function App() {
     </div>
   );
 }
+

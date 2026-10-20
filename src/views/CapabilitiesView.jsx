@@ -84,11 +84,8 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
     setActiveCategory(preset.recommendedCapabilities[0]);
   };
 
-  const handleExportToScope = () => {
-    if (onSelectCapabilitiesForScope) {
-      onSelectCapabilitiesForScope(selectedStack);
-    }
-    setView('scope');
+  const handleProceedToPricing = () => {
+    setView('pricing');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -184,7 +181,7 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
         <div 
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 115px), 1fr))', 
             gap: '10px' 
           }}
         >
@@ -247,7 +244,7 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
 
       {/* ACTIVE CAPABILITY DEEP DIVE & MAGIC DISCOVERY PLAYGROUND */}
       <section className="content-section" style={{ marginBottom: '80px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '32px', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 310px), 1fr))', gap: '32px', alignItems: 'start' }}>
           
           {/* LEFT: ARCHITECTURE & RESEARCH SPECIFICATION */}
           <div 
@@ -438,7 +435,7 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
                   </p>
 
                   <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(0, 0, 0, 0.4)', border: '1px solid var(--border-glass)', marginBottom: '20px' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', textAlign: 'center', marginBottom: '20px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 115px), 1fr))', gap: '10px', textAlign: 'center', marginBottom: '20px' }}>
                       {[
                         { label: 'Mobile / Web', icon: Smartphone, color: '#00f2fe', status: 'ACTIVE' },
                         { label: 'Kafka Bus', icon: Activity, color: '#3b82f6', status: '99.99%' },
@@ -1087,11 +1084,11 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
               </div>
 
               <button
-                onClick={handleExportToScope}
+                onClick={handleProceedToPricing}
                 className="btn-primary"
                 style={{ padding: '10px 20px', fontSize: '0.85rem' }}
               >
-                <span>Compile Stack in Scope Estimator</span>
+                <span>Proceed to Pricing Calculator</span>
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -1164,11 +1161,11 @@ export default function CapabilitiesView({ setView, onSelectCapabilitiesForScope
           </button>
 
           <button
-            onClick={handleExportToScope}
+            onClick={handleProceedToPricing}
             className="btn-primary"
             style={{ padding: '9px 18px', fontSize: '0.85rem' }}
           >
-            <span>Proceed to Scope Review</span>
+            <span>Proceed to Cost Calculator</span>
             <ArrowRight size={14} />
           </button>
         </div>

@@ -301,33 +301,157 @@ export const COMMONLY_USED_SERVICES = [
   }
 ];
 
+export const PRESET_CATEGORIES = [
+  'All',
+  'Web & SaaS',
+  'Mobile & Media',
+  'AI & Data',
+  'FinTech & Enterprise'
+];
+
 export const PRICING_PRESETS = [
   {
     id: 'mvp_web',
     name: 'Lean Startup Web App',
-    badge: 'Popular for MVPs',
-    tagline: 'High-speed web MVP with domain, DB, auth, email, and error monitoring.',
+    category: 'Web & SaaS',
+    badge: 'MVP Core',
+    tagline: 'High-speed web MVP with custom domain, PostgreSQL, authentication, transactional email, and Sentry monitoring.',
     selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'email_service', 'telemetry_sentry']
+  },
+  {
+    id: 'b2b_saas',
+    name: 'Multi-Tenant B2B SaaS',
+    category: 'Web & SaaS',
+    badge: 'High ARR',
+    tagline: 'Enterprise SaaS architecture with Stripe tiered billing, Redis caching, SSO, product analytics, and automated cloud backups.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'redis_cache', 'auth_sso', 'email_service', 'stripe_payments', 'subscription_engine', 'cloud_backups', 'telemetry_sentry', 'product_analytics']
   },
   {
     id: 'full_mobile',
     name: 'Production Mobile App (iOS & Android)',
+    category: 'Mobile & Media',
     badge: 'Commercial Mobile',
-    tagline: 'Dual app store publication, push alerts, offline storage, biometrics, and OTA updates.',
+    tagline: 'Dual app store publication, push notifications, offline object storage, FaceID biometric security, and live OTA hotfixes.',
     selectedIds: ['domain_dns', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'biometric_security', 'push_notifications', 'apple_developer', 'google_play', 'mobile_ota', 'telemetry_sentry']
+  },
+  {
+    id: 'social_community',
+    name: 'Social Community & Real-Time Chat',
+    category: 'Mobile & Media',
+    badge: 'High Engagement',
+    tagline: 'Ultra-low-latency Redis messaging, cross-platform push notifications, media storage CDN, and product telemetry.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'redis_cache', 'auth_sso', 'push_notifications', 'apple_developer', 'google_play', 'mobile_ota', 'product_analytics', 'telemetry_sentry']
   },
   {
     id: 'ai_saas',
     name: 'AI-First SaaS Platform',
+    category: 'AI & Data',
     badge: 'Autonomous AI',
-    tagline: 'SaaS platform equipped with LLM tokens, vector search, Stripe billing, and user analytics.',
+    tagline: 'SaaS platform equipped with LLM tokens, Qdrant vector retrieval, Stripe subscription engine, and user conversion funnels.',
     selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'email_service', 'stripe_payments', 'subscription_engine', 'llm_tokens', 'vector_db', 'product_analytics', 'telemetry_sentry']
   },
   {
+    id: 'ai_agent_swarm',
+    name: 'Autonomous Multi-Agent Swarm',
+    category: 'AI & Data',
+    badge: 'Cognitive Loop',
+    tagline: 'Distributed agent orchestration mesh with Redis memory bus, private vector indexing, LLM reasoning tokens, and disaster backups.',
+    selectedIds: ['domain_dns', 'cloud_hosting', 'managed_db', 'redis_cache', 'auth_sso', 'email_service', 'llm_tokens', 'vector_db', 'cloud_backups', 'telemetry_sentry']
+  },
+  {
+    id: 'ai_support_desk',
+    name: 'AI Voice & Omnichannel Support Desk',
+    category: 'AI & Data',
+    badge: 'Automated Tier-1',
+    tagline: '24/7 intelligent ticketing with LLM response engines, vector knowledge retrieval, SMS OTP escalation, and live error alerts.',
+    selectedIds: ['domain_dns', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'email_service', 'sms_otp', 'llm_tokens', 'vector_db', 'telemetry_sentry']
+  },
+  {
+    id: 'fintech_trading',
+    name: 'FinTech Banking & Real-Time Trading',
+    category: 'FinTech & Enterprise',
+    badge: 'Zero-Trust Core',
+    tagline: 'Sub-millisecond Redis execution, multi-factor SMS OTP, hardware biometric passkeys, Stripe payments, and multi-region disaster backups.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'redis_cache', 'auth_sso', 'biometric_security', 'sms_otp', 'cloud_backups', 'stripe_payments', 'telemetry_sentry']
+  },
+  {
+    id: 'ecommerce_marketplace',
+    name: 'Global Multi-Vendor Marketplace',
+    category: 'Web & SaaS',
+    badge: 'High GMV',
+    tagline: 'Global edge-cached storefront with Stripe multi-currency checkout, SMS delivery updates, media R2 storage, and funnel analytics.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'redis_cache', 'auth_sso', 'email_service', 'sms_otp', 'stripe_payments', 'product_analytics', 'telemetry_sentry']
+  },
+  {
+    id: 'on_demand_logistics',
+    name: 'On-Demand Logistics & Delivery Fleet',
+    category: 'Mobile & Media',
+    badge: 'Live Geo-Dispatch',
+    tagline: 'Turnkey courier routing with Google Maps API, native iOS/Android driver apps, push dispatch alerts, and SMS delivery tracking.',
+    selectedIds: ['domain_dns', 'cloud_hosting', 'managed_db', 'redis_cache', 'maps_api', 'auth_sso', 'push_notifications', 'sms_otp', 'stripe_payments', 'apple_developer', 'google_play', 'mobile_ota', 'telemetry_sentry']
+  },
+  {
+    id: 'telehealth_hipaa',
+    name: 'Telehealth & HIPAA Patient Portal',
+    category: 'FinTech & Enterprise',
+    badge: 'HIPAA Compliant',
+    tagline: 'Encrypted patient records, hardware biometric login, SMS appointment reminders, transactional email, and automated multi-region snapshots.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'biometric_security', 'sms_otp', 'email_service', 'cloud_backups', 'telemetry_sentry']
+  },
+  {
+    id: 'edtech_lms',
+    name: 'EdTech Interactive Learning Management',
+    category: 'Web & SaaS',
+    badge: 'Cohort LMS',
+    tagline: 'Course video streaming storage, Stripe recurring memberships, student progress funnels, and automated course completion certificates.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'auth_sso', 'email_service', 'stripe_payments', 'subscription_engine', 'product_analytics', 'telemetry_sentry']
+  },
+  {
+    id: 'event_ticketing',
+    name: 'High-Concurrency Event Ticketing',
+    category: 'FinTech & Enterprise',
+    badge: 'Traffic Spikes',
+    tagline: 'Flash-sale queue architecture with in-memory Redis lockouts, Cloudflare anti-bot WAF, SMS mobile passes, and Stripe checkout.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'redis_cache', 'auth_sso', 'email_service', 'sms_otp', 'stripe_payments', 'cloud_backups', 'telemetry_sentry']
+  },
+  {
+    id: 'iot_telemetry',
+    name: 'IoT Smart Device Telemetry Mesh',
+    category: 'AI & Data',
+    badge: 'Edge Sensors',
+    tagline: 'High-frequency time-series telemetry ingestion, in-memory stream processing, push anomaly alerts, and cold S3 archive.',
+    selectedIds: ['domain_dns', 'cloud_hosting', 'managed_db', 'redis_cache', 'object_storage', 'cloud_backups', 'push_notifications', 'telemetry_sentry']
+  },
+  {
+    id: 'dev_platform_api',
+    name: 'Developer Platform & Public API Gateway',
+    category: 'Web & SaaS',
+    badge: 'API Monetization',
+    tagline: 'Public developer portal with metered API key usage, Stripe billing, Redis distributed rate-limiting, and error diagnostics.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'redis_cache', 'auth_sso', 'subscription_engine', 'stripe_payments', 'telemetry_sentry', 'product_analytics']
+  },
+  {
+    id: 'media_streaming',
+    name: 'Digital Media & Creator Streaming Hub',
+    category: 'Mobile & Media',
+    badge: 'Content Creators',
+    tagline: 'High-bandwidth video CDN, recurring fan subscriptions, push livestream alerts, and fast Over-The-Air mobile releases.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'redis_cache', 'auth_sso', 'stripe_payments', 'subscription_engine', 'push_notifications', 'mobile_ota', 'telemetry_sentry']
+  },
+  {
+    id: 'real_estate_portal',
+    name: 'Real Estate & Spatial Discovery Portal',
+    category: 'FinTech & Enterprise',
+    badge: 'Spatial PropTech',
+    tagline: 'Interactive map property search, high-res architectural photo storage, SMS broker alerts, and user search cohort analytics.',
+    selectedIds: ['domain_dns', 'cdn_waf', 'cloud_hosting', 'managed_db', 'object_storage', 'maps_api', 'auth_sso', 'email_service', 'sms_otp', 'product_analytics', 'telemetry_sentry']
+  },
+  {
     id: 'full_enterprise',
-    name: 'Enterprise Full-Stack Suite',
-    badge: 'Comprehensive',
-    tagline: 'All mission-critical services: multi-region cloud, maps, SMS 2FA, AI, payments, and stores.',
+    name: 'Enterprise Global Full-Stack Suite',
+    category: 'FinTech & Enterprise',
+    badge: 'All 22 Services',
+    tagline: 'Comprehensive digital infrastructure across edge CDN, mobile store pipelines, generative AI tokens, vector DB, payments, and disaster resilience.',
     selectedIds: COMMONLY_USED_SERVICES.map(s => s.id)
   }
 ];

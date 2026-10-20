@@ -16,8 +16,7 @@ import {
   FileCheck,
   Server
 } from 'lucide-react';
-import { SERVICES, PORTFOLIO } from '../data/servicesData';
-import { ENGAGEMENT_MODELS } from '../data/consultingScopeData';
+import { SERVICES, PORTFOLIO, ENGAGEMENT_MODELS } from '../data/servicesData';
 
 export default function ServicesView({ setView }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -87,7 +86,7 @@ export default function ServicesView({ setView }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 310px), 1fr))',
             gap: '30px'
           }}
         >
@@ -239,7 +238,7 @@ export default function ServicesView({ setView }) {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '28px' }}>
           {ENGAGEMENT_MODELS.map((model, idx) => (
             <div
               key={model.id}
@@ -283,14 +282,14 @@ export default function ServicesView({ setView }) {
               <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '20px' }}>
                 <button
                   onClick={() => {
-                    setView('scope');
+                    setView('pricing');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="btn-secondary"
                   style={{ width: '100%', padding: '12px', fontSize: '0.88rem', justifyContent: 'center' }}
                 >
                   <Sliders size={14} color="var(--cyan-core)" />
-                  <span>Configure {model.title.split(' ')[0]} Scope</span>
+                  <span>Configure {model.title.split(' ')[0]} in Pricing Calculator</span>
                 </button>
               </div>
 

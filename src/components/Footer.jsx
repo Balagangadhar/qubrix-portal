@@ -1,7 +1,7 @@
 import React from 'react';
-import { Terminal, Shield, ArrowUpRight, Sparkles, Heart, Globe, Cpu, Smartphone, Layers, Lock, Calendar } from 'lucide-react';
+import { Shield, ArrowUpRight, Sparkles, Heart, Globe, Cpu, Smartphone, Layers, Lock, Calendar } from 'lucide-react';
 
-export default function Footer({ setView, onOpenTerminal, theme }) {
+export default function Footer({ setView, theme }) {
   const handleNav = (viewId) => {
     setView(viewId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,8 +25,8 @@ export default function Footer({ setView, onOpenTerminal, theme }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+            gap: '36px',
             marginBottom: '48px'
           }}
         >
@@ -115,7 +115,7 @@ export default function Footer({ setView, onOpenTerminal, theme }) {
           <div>
             <h4 style={{ fontSize: '0.98rem', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Layers size={16} color="var(--purple-accent)" />
-              Engagement & Scoping
+              Engagement & Estimation
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem', color: 'var(--text-muted)' }}>
               <li>
@@ -124,8 +124,8 @@ export default function Footer({ setView, onOpenTerminal, theme }) {
                 </button>
               </li>
               <li>
-                <button onClick={() => handleNav('scope')} style={{ background: 'none', border: 'none', color: 'var(--cyan-core)', cursor: 'pointer', padding: 0, fontWeight: 700 }}>
-                  Interactive 3D Scope Estimator →
+                <button onClick={() => handleNav('capabilities')} style={{ background: 'none', border: 'none', color: 'var(--cyan-core)', cursor: 'pointer', padding: 0, fontWeight: 700 }}>
+                  Capabilities Sandbox Catalogue →
                 </button>
               </li>
               <li>
@@ -198,23 +198,12 @@ export default function Footer({ setView, onOpenTerminal, theme }) {
             © {new Date().getFullYear()} Qubrix Consulting Group. All Rights Reserved. Full Client IP Ownership.
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
             <button
-              onClick={onOpenTerminal}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: 'var(--text-muted)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                fontFamily: 'var(--font-mono)',
-                fontSize: '0.78rem'
-              }}
+              onClick={() => handleNav('pricing')}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.8rem' }}
             >
-              <Terminal size={14} color="var(--cyan-core)" />
-              <span>CLI Terminal (Ctrl+K)</span>
+              Pricing Calculator
             </button>
 
             <button

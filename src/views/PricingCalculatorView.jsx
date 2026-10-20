@@ -13,6 +13,7 @@ import {
   COMMONLY_USED_SERVICES, 
   PRICING_CATEGORIES, 
   PRICING_PRESETS, 
+  PRESET_CATEGORIES,
   CURRENCIES 
 } from '../data/pricingCalculatorData';
 
@@ -28,6 +29,8 @@ export default function PricingCalculatorView({ setView, onSelectBudgetForContac
     'auth_sso', 
     'telemetry_sentry'
   ]);
+  const [activePresetCategory, setActivePresetCategory] = useState('All');
+  const [activePresetId, setActivePresetId] = useState('mvp_web');
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [currency, setCurrency] = useState('USD');
@@ -48,7 +51,14 @@ export default function PricingCalculatorView({ setView, onSelectBudgetForContac
   // Apply Preset
   const applyPreset = (preset) => {
     setSelectedServices(preset.selectedIds);
+    setActivePresetId(preset.id);
   };
+
+  const filteredPresets = activePresetCategory === 'All'
+    ? PRICING_PRESETS
+    : PRICING_PRESETS.filter(p => p.category === activePresetCategory);
+
+  const activePresetObj = PRICING_PRESETS.find(p => p.id === activePresetId) || PRICING_PRESETS[0];
 
   // Select all / Deselect all
   const selectAll = () => setSelectedServices(COMMONLY_USED_SERVICES.map(s => s.id));
@@ -274,47 +284,104 @@ Generated via Qubrix Portal Cost Estimator.`;
         </div>
 
         {/* Preset Architectures Strip */}
-        <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-            One-Click Starter Presets:
-          </span>
-          {PRICING_PRESETS.map(preset => (
-            <button
-              key={preset.id}
-              onClick={() => applyPreset(preset)}
-              style={{
-                padding: '6px 14px',
-                borderRadius: '999px',
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid var(--border-glass)',
-                color: 'var(--text-muted)',
-                fontSize: '0.78rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                transition: 'all 0.15s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--cyan-core)';
-                e.currentTarget.style.color = 'var(--cyan-core)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-glass)';
-                e.currentTarget.style.color = 'var(--text-muted)';
-              }}
-            >
-              <Sparkles size={12} color="var(--cyan-core)" />
-              <span>{preset.name}</span>
-            </button>
-          ))}
+        <div style={{ marginTop: '24px' }}>
+          {/* Preset Category Filter Tabs */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', flexWrap: 'wrap', marginBottom: '12px' }}>
+            <span style={{ fontSize: '0.76rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)', marginRight: '4px' }}>
+              Architectural Presets (18):
+            </span>
+            {PRESET_CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActivePresetCategory(cat)}
+                style={{
+                  background: activePresetCategory === cat ? 'rgba(0, 242, 254, 0.15)' : 'rgba(255, 255, 255, 0.03)',
+                  border: activePresetCategory === cat ? '1px solid var(--border-glow)' : '1px solid var(--border-glass)',
+                  color: activePresetCategory === cat ? 'var(--cyan-core)' : 'var(--text-muted)',
+                  padding: '4px 10px',
+                  borderRadius: '999px',
+                  fontSize: '0.74rem',
+                  fontWeight: activePresetCategory === cat ? 700 : 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Preset Buttons Grid/Wrap */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', flexWrap: 'wrap', maxWidth: '1050px', margin: '0 auto' }}>
+            {filteredPresets.map(preset => {
+              const isSelected = activePresetId === preset.id;
+              return (
+                <button
+                  key={preset.id}
+                  onClick={() => applyPreset(preset)}
+                  style={{
+                    padding: '6px 12px',
+                    borderRadius: '999px',
+                    background: isSelected ? 'rgba(0, 242, 254, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                    border: isSelected ? '1px solid var(--border-glow)' : '1px solid var(--border-glass)',
+                    color: isSelected ? 'var(--cyan-core)' : 'var(--text-main)',
+                    fontSize: '0.78rem',
+                    fontWeight: isSelected ? 700 : 500,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'all 0.15s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = 'var(--cyan-core)';
+                      e.currentTarget.style.color = 'var(--cyan-core)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.borderColor = 'var(--border-glass)';
+                      e.currentTarget.style.color = 'var(--text-main)';
+                    }
+                  }}
+                >
+                  <Sparkles size={11} color={isSelected ? 'var(--cyan-core)' : 'var(--text-dim)'} />
+                  <span>{preset.name}</span>
+                  <span style={{
+                    fontSize: '0.64rem',
+                    padding: '1px 6px',
+                    borderRadius: '999px',
+                    background: isSelected ? 'rgba(0, 242, 254, 0.2)' : 'rgba(255, 255, 255, 0.06)',
+                    color: isSelected ? 'var(--cyan-core)' : 'var(--text-dim)',
+                    fontWeight: 600
+                  }}>
+                    {preset.badge}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Preset Tagline Summary */}
+          {activePresetObj && (
+            <div style={{
+              marginTop: '12px',
+              textAlign: 'center',
+              fontSize: '0.78rem',
+              color: 'var(--text-muted)',
+              fontFamily: 'var(--font-heading)'
+            }}>
+              <span style={{ color: 'var(--cyan-core)', fontWeight: 700 }}>{activePresetObj.name} ({activePresetObj.selectedIds.length} services):</span>{' '}
+              <span>{activePresetObj.tagline}</span>
+            </div>
+          )}
         </div>
       </section>
 
       {/* MAIN TWO-COLUMN SECTION */}
       <section className="content-section">
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 310px), 1fr))', gap: '32px', alignItems: 'start' }}>
           
           {/* LEFT COLUMN: THE SERVICES PICKER */}
           <div>

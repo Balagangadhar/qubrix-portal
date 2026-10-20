@@ -33,7 +33,7 @@ export default function ChatbotWidget({ onNavigate, theme }) {
         'Mobile App Engineering',
         'Enterprise AI Enablement',
         'Who are Bala & Srikanth?',
-        'Estimate Project Scope'
+        'Interactive Pricing Calculator'
       ]
     }
   ]);
@@ -73,27 +73,27 @@ export default function ChatbotWidget({ onNavigate, theme }) {
         navAction = { label: 'View Leadership Profiles', target: 'about' };
       } else if (lower.includes('web') || lower.includes('next') || lower.includes('react') || lower.includes('frontend') || lower.includes('backend') || lower.includes('saas') || lower.includes('cloud')) {
         responseText = `**Web Application Consulting & Architecture**:\n\n1. **Next.js 15 & React 19**: Streaming SSR, Server Components, and sub-100ms LCP.\n2. **Micro-Frontends**: Modular, independently deployable web modules for enterprise scale.\n3. **Distributed Backends**: High-throughput microservices in Go, Node.js, and Rust with Kafka and WebSockets.\n4. **Multi-Region Cloud**: Zero-downtime Kubernetes deployments on AWS/GCP with 99.99% SLA.\n\nLead Architect: **Bala** (14+ yrs, JPMorganChase).`;
-        quickReplies = ['Launch Interactive Scope Builder', 'Schedule Strategy Call', 'Mobile App Engineering'];
+        quickReplies = ['Interactive Pricing Calculator', 'Schedule Strategy Call', 'Mobile App Engineering'];
         navAction = { label: 'Explore Web Services', target: 'services' };
       } else if (lower.includes('mobile') || lower.includes('ios') || lower.includes('android') || lower.includes('react native') || lower.includes('flutter') || lower.includes('swift')) {
         responseText = `**Mobile Application Engineering**:\n\n1. **Fluid Performance**: 60fps gesture animations on native iOS (Swift) & Android (Kotlin) or cross-platform (React Native/Flutter).\n2. **Offline-First Sync**: Local-first architecture using SQLite and WatermelonDB with zero-delay UX.\n3. **Hardware & Biometrics**: FaceID/TouchID secure enclave integration and BLE sensor telemetry.\n4. **Full Store Publication**: End-to-end App Store review compliance and automated OTA hotfixes.\n\nLead Architect: **Srikanth** (14+ yrs, Evoke Technologies).`;
-        quickReplies = ['Scope a Mobile App', 'Schedule Mobile Consultation', 'Enterprise AI Enablement'];
+        quickReplies = ['Calculate Mobile App Cost', 'Schedule Mobile Consultation', 'Enterprise AI Enablement'];
         navAction = { label: 'Explore Mobile Engineering', target: 'services' };
       } else if (lower.includes('ai') || lower.includes('agent') || lower.includes('swarm') || lower.includes('llm') || lower.includes('rag') || lower.includes('langgraph') || lower.includes('gpt')) {
         responseText = `**Enterprise AI Enablement & Multi-Agent Swarms**:\n\n1. **Autonomous Agent Swarms**: Multi-agent cognitive loops using LangGraph for multi-step process automation.\n2. **Enterprise GraphRAG**: Hybrid sparse-dense vector search with Qdrant/Milvus and semantic reranking.\n3. **Private On-Premise LLMs**: Containerized local deployments (Ollama/vLLM) ensuring your data never leaves your perimeter.\n4. **Deterministic Guardrails**: Automated hallucination detection, prompt injection mitigation, and continuous evals.\n\nCo-Led by **Bala & Srikanth**.`;
-        quickReplies = ['AI Readiness Audit', 'Launch Interactive Scope Builder', 'Schedule AI Call'];
+        quickReplies = ['AI Readiness Audit', 'Interactive Pricing Calculator', 'Schedule AI Call'];
         navAction = { label: 'Explore AI Enablement', target: 'services' };
       } else if (lower.includes('price') || lower.includes('pricing') || lower.includes('calculator') || lower.includes('cost') || lower.includes('estimate') || lower.includes('budget') || lower.includes('storage') || lower.includes('domain') || lower.includes('maps') || lower.includes('sms')) {
         responseText = `We have an **Interactive Pricing & Infrastructure Cost Calculator**!\n\nYou can select commonly needed services (custom domains, S3 object storage, PostgreSQL, Google Maps, Twilio SMS, Resend email, Stripe payments, OpenAI tokens, Sentry monitoring, and Apple/Google store fees).\n\nIt dynamically calculates:\n• **One-Time Engineering & Setup Fees**\n• **Monthly Recurring Infrastructure Fees**\n• **Annualized Total Cost of Ownership (with 15% annual savings)**\n• Multi-currency conversions (USD, EUR, GBP, INR)!`;
-        quickReplies = ['Open Pricing Calculator', 'Launch 3D Scope Estimator', 'Schedule Consultation'];
+        quickReplies = ['Open Pricing Calculator', 'Explore Capabilities Catalogue', 'Schedule Consultation'];
         navAction = { label: 'Launch Pricing Calculator', target: 'pricing' };
       } else if (lower.includes('capabilit') || lower.includes('catalogue') || lower.includes('connect') || lower.includes('communicate') || lower.includes('transact') || lower.includes('understand') || lower.includes('immerse') || lower.includes('secure') || lower.includes('operate') || lower.includes('superpower')) {
         responseText = `**Qubrix Digital Capabilities Catalogue** organizes software into 8 reusable enterprise foundations:\n\n1. **Connect**: Maps, APIs, Social, CRM (Salesforce), ERP (SAP)\n2. **Communicate**: In-app chat, WebRTC video/voice, Push alerts\n3. **Transact**: Global payments, subscriptions, bookings, ledger invoices\n4. **Understand**: Semantic vector search, real-time analytics, OCR vision\n5. **Intelligence**: LangGraph agent swarms, private LLMs, guardrails\n6. **Immerse**: 3D WebGL, WebXR spatial models, digital twins\n7. **Secure**: Biometrics, WebAuthn, RBAC, behavioral fraud scoring\n8. **Operate**: Multi-part S3 storage, DAG workflows, distributed crons\n\nYou can research and test live interactive sandboxes for each in our catalogue!`;
-        quickReplies = ['Explore Capabilities Catalogue', 'Test AI Intelligence Swarm', 'Launch Scope Builder'];
+        quickReplies = ['Explore Capabilities Catalogue', 'Test AI Intelligence Swarm', 'Open Pricing Calculator'];
         navAction = { label: 'Open Capabilities Catalogue', target: 'capabilities' };
       } else if (lower.includes('contact') || lower.includes('book') || lower.includes('consult') || lower.includes('hire') || lower.includes('meeting') || lower.includes('call')) {
         responseText = `You can easily book a **1-on-1 Strategy Consultation** directly with Bala and Srikanth. We offer complimentary 45-minute discovery sessions and provide an actionable written technical blueprint within 24 hours. We also sign NDAs upon request.`;
-        quickReplies = ['Schedule Architecture Call', 'Submit Detailed RFP', 'Open Scope Builder'];
+        quickReplies = ['Schedule Architecture Call', 'Submit Detailed RFP', 'Open Pricing Calculator'];
         navAction = { label: 'Go to Consultation Booking', target: 'contact' };
       } else {
         responseText = `I'm here to help you evaluate your technical needs across **Web Applications**, **Mobile Engineering**, or **Enterprise AI Enablement**. I can also connect you directly with Principal Architects **Bala** (JPMorganChase) & **Srikanth** (Evoke Technologies) for a scoping review!`;
@@ -101,7 +101,7 @@ export default function ChatbotWidget({ onNavigate, theme }) {
           'Web Application Architecture',
           'Mobile App Engineering',
           'Enterprise AI Enablement',
-          'Estimate Project Scope',
+          'Calculate Project Budget',
           'Schedule Strategy Call'
         ];
       }
@@ -130,59 +130,53 @@ export default function ChatbotWidget({ onNavigate, theme }) {
 
   return (
     <>
-      {/* Floating Chatbot Launcher Button */}
+      {/* Floating Chatbot Circular Icon Launcher (Zero Clutter) */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
+          className="chatbot-launcher-icon-btn"
+          title="Consulting Copilot AI (Click to chat)"
+          aria-label="Open Consulting Copilot Chat"
           style={{
             position: 'fixed',
-            bottom: '26px',
-            right: '26px',
+            bottom: '24px',
+            right: '24px',
             zIndex: 9990,
+            width: '54px',
+            height: '54px',
+            borderRadius: '50%',
             background: 'linear-gradient(135deg, #00f2fe 0%, #7928ca 100%)',
             color: '#ffffff',
-            border: 'none',
-            borderRadius: '999px',
-            padding: '12px 20px',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
+            justifyContent: 'center',
             cursor: 'pointer',
             boxShadow: '0 8px 30px rgba(0, 242, 254, 0.45)',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
-            fontSize: '0.92rem'
+            padding: 0
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-3px) scale(1.03)';
-            e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 242, 254, 0.6)';
+            e.currentTarget.style.transform = 'translateY(-3px) scale(1.08)';
+            e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 242, 254, 0.65)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.transform = 'translateY(0) scale(1)';
             e.currentTarget.style.boxShadow = '0 8px 30px rgba(0, 242, 254, 0.45)';
           }}
         >
+          <Bot size={24} color="#ffffff" />
+          {/* Pulsing Online Status Indicator */}
           <div
             style={{
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              background: 'rgba(255, 255, 255, 0.2)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <Sparkles size={16} color="#ffffff" />
-          </div>
-          <span>Consulting Copilot</span>
-          <div
-            style={{
-              width: '8px',
-              height: '8px',
+              position: 'absolute',
+              top: '2px',
+              right: '2px',
+              width: '12px',
+              height: '12px',
               borderRadius: '50%',
               backgroundColor: '#10b981',
+              border: '2px solid #030014',
               boxShadow: '0 0 8px #10b981'
             }}
           />
@@ -192,12 +186,14 @@ export default function ChatbotWidget({ onNavigate, theme }) {
       {/* Floating Chat Modal */}
       {isOpen && (
         <div
+          className="chatbot-modal-window"
           style={{
             position: 'fixed',
-            bottom: '24px',
-            right: '24px',
+            bottom: '22px',
+            right: '22px',
             width: 'min(420px, calc(100vw - 32px))',
-            height: 'min(620px, calc(100vh - 100px))',
+            height: 'min(620px, calc(100vh - 80px))',
+            maxHeight: 'calc(100vh - 40px)',
             zIndex: 9999,
             backgroundColor: theme === 'dark' ? 'rgba(7, 10, 32, 0.96)' : 'rgba(255, 255, 255, 0.96)',
             backdropFilter: 'blur(20px)',
@@ -470,6 +466,23 @@ export default function ChatbotWidget({ onNavigate, theme }) {
           }
           50% {
             transform: translateY(-4px);
+          }
+        }
+        @media (max-width: 480px) {
+          .chatbot-modal-window {
+            right: 12px !important;
+            left: 12px !important;
+            bottom: 12px !important;
+            width: auto !important;
+            height: calc(100vh - 24px) !important;
+            max-height: calc(100vh - 24px) !important;
+            border-radius: 18px !important;
+          }
+          .chatbot-launcher-icon-btn {
+            bottom: 16px !important;
+            right: 16px !important;
+            width: 48px !important;
+            height: 48px !important;
           }
         }
       `}</style>

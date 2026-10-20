@@ -263,7 +263,7 @@ export default function ContactView({ selectedScopeForBooking }) {
               {activeTab === 'book' ? (
                 /* TAB 1: 1-on-1 Consultation Booking Form */
                 <form onSubmit={handleBookingSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
                     <div>
                       <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
                         Your Full Name *
@@ -311,7 +311,7 @@ export default function ContactView({ selectedScopeForBooking }) {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
                     <div>
                       <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
                         Company / Organization
@@ -361,7 +361,7 @@ export default function ContactView({ selectedScopeForBooking }) {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
                     <div>
                       <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
                         Preferred Principal Consultant
@@ -463,7 +463,7 @@ export default function ContactView({ selectedScopeForBooking }) {
               ) : (
                 /* TAB 2: Detailed Project RFP Submission Form */
                 <form onSubmit={handleRfpSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
                     <div>
                       <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
                         Your Full Name *
@@ -511,7 +511,7 @@ export default function ContactView({ selectedScopeForBooking }) {
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '18px' }}>
                     <div>
                       <label style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '6px', display: 'block' }}>
                         Estimated Budget Range

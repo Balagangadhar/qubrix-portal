@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Terminal, 
   Menu, 
   X, 
   Sparkles, 
@@ -15,7 +14,7 @@ import {
   Sliders
 } from 'lucide-react';
 
-export default function Navbar({ currentView, setView, onOpenTerminal, theme, toggleTheme }) {
+export default function Navbar({ currentView, setView, theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -32,7 +31,6 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
     { id: 'capabilities', label: 'Capabilities', badge: 'Catalogue' },
     { id: 'pricing', label: 'Pricing Calculator', badge: 'Live TCO' },
     { id: 'services', label: 'Consulting Services' },
-    { id: 'scope', label: 'Scope Estimator', badge: '3D Tool' },
     { id: 'about', label: 'Leadership' },
     { id: 'contact', label: 'Contact' }
   ];
@@ -143,6 +141,7 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
               </span>
             </div>
             <div
+              className="brand-subtitle"
               style={{
                 fontSize: '0.68rem',
                 color: 'var(--text-muted)',
@@ -226,7 +225,8 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              transition: 'all 0.25s ease'
+              transition: 'all 0.25s ease',
+              flexShrink: 0
             }}
           >
             {theme === 'dark' ? (
@@ -236,37 +236,15 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
             )}
           </button>
 
-          {/* Terminal Button */}
-          <button
-            onClick={onOpenTerminal}
-            title="Launch Command Terminal (Ctrl+K)"
-            style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-glass)',
-              color: 'var(--text-muted)',
-              padding: '8px 12px',
-              borderRadius: '9999px',
-              fontSize: '0.82rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              cursor: 'pointer',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <Terminal size={15} color="var(--cyan-core)" />
-            <span className="terminal-label" style={{ fontFamily: 'var(--font-mono)' }}>
-              Ctrl+K
-            </span>
-          </button>
-
-          {/* Primary CTA */}
+          {/* Primary CTA (Desktop only) */}
           <button
             onClick={() => handleNavClick('contact')}
-            className="btn-primary"
+            className="btn-primary nav-cta-btn"
             style={{
               padding: '9px 18px',
-              fontSize: '0.88rem'
+              fontSize: '0.88rem',
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
           >
             <span>Book Consultation</span>
@@ -277,17 +255,21 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
-              background: 'transparent',
-              border: 'none',
+              background: 'rgba(255, 255, 255, 0.05)',
+              border: '1px solid var(--border-glass)',
+              borderRadius: '10px',
               color: 'var(--text-main)',
               padding: '8px',
               cursor: 'pointer',
               display: 'flex',
-              alignItems: 'center'
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
             }}
             className="mobile-toggle"
+            aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -298,12 +280,31 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
           style={{
             background: 'var(--bg-surface)',
             borderBottom: '1px solid var(--border-glass)',
-            padding: '20px 24px',
+            padding: '16px 20px 24px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '10px'
+            gap: '8px',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6)',
+            maxHeight: 'calc(100vh - 76px)',
+            overflowY: 'auto'
           }}
         >
+          {/* Mobile Primary Action */}
+          <button
+            onClick={() => handleNavClick('contact')}
+            className="btn-primary"
+            style={{
+              width: '100%',
+              padding: '13px 20px',
+              fontSize: '0.95rem',
+              marginBottom: '10px',
+              justifyContent: 'center'
+            }}
+          >
+            <span>Schedule Strategy Consultation</span>
+            <ArrowRight size={16} />
+          </button>
+
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (
@@ -312,29 +313,31 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
                 onClick={() => handleNavClick(item.id)}
                 style={{
                   background: isActive ? 'rgba(0, 242, 254, 0.12)' : 'transparent',
-                  border: 'none',
+                  border: isActive ? '1px solid var(--border-glow)' : '1px solid transparent',
                   color: isActive ? 'var(--cyan-core)' : 'var(--text-main)',
                   padding: '12px 16px',
-                  borderRadius: '10px',
-                  fontSize: '1rem',
+                  borderRadius: '12px',
+                  fontSize: '0.96rem',
                   fontWeight: 600,
                   fontFamily: 'var(--font-heading)',
                   textAlign: 'left',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'space-between'
+                  justifyContent: 'space-between',
+                  transition: 'all 0.15s ease'
                 }}
               >
                 <span>{item.label}</span>
                 {item.badge && (
                   <span
                     style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.68rem',
                       padding: '2px 8px',
                       borderRadius: '999px',
                       background: 'rgba(168, 85, 247, 0.3)',
-                      color: 'var(--purple-accent)'
+                      color: 'var(--purple-accent)',
+                      fontWeight: 700
                     }}
                   >
                     {item.badge}
@@ -354,10 +357,24 @@ export default function Navbar({ currentView, setView, onOpenTerminal, theme, to
           .mobile-toggle {
             display: none !important;
           }
+          .nav-cta-btn {
+            display: inline-flex !important;
+          }
         }
-        @media (max-width: 600px) {
-          .terminal-label {
-            display: none;
+        @media (max-width: 959px) {
+          .nav-cta-btn {
+            display: none !important;
+          }
+          .desktop-nav {
+            display: none !important;
+          }
+          .mobile-toggle {
+            display: flex !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .brand-subtitle {
+            display: none !important;
           }
         }
       `}</style>

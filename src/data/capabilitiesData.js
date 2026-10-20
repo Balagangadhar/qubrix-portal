@@ -173,5 +173,33 @@ export const CAPABILITY_PRESETS = [
     targetPlatform: 'Web & Mobile WebXR',
     recommendedCapabilities: ['immerse', 'transact', 'communicate', 'understand', 'connect'],
     summary: 'A spatial shopping portal featuring interactive 3D WebGL product configurators, instant checkout, and real-time live video shopping assistance.'
+  },
+  {
+    id: 'on-demand-logistics',
+    name: 'On-Demand Logistics & Fleet',
+    targetPlatform: 'Mobile + Web Dispatch',
+    recommendedCapabilities: ['connect', 'communicate', 'transact', 'operate', 'understand'],
+    summary: 'Precision dispatch fleet with real-time GPS telemetry, driver push alerts, instant payouts, and dynamic route optimization.'
+  },
+  {
+    id: 'telehealth-portal',
+    name: 'HIPAA Telehealth & Patient Care',
+    targetPlatform: 'Web & Mobile App',
+    recommendedCapabilities: ['communicate', 'secure', 'operate', 'understand', 'connect'],
+    summary: 'Encrypted WebRTC telehealth video, biometric health vault, automated prescription workflows, and EHR system integration.'
+  },
+  {
+    id: 'iot-edge-mesh',
+    name: 'IoT Telemetry & Edge Stream',
+    targetPlatform: 'Edge + Cloud Microservices',
+    recommendedCapabilities: ['operate', 'understand', 'secure', 'connect'],
+    summary: 'Sub-second sensor ingestion, edge anomaly detection, distributed time-series indexing, and zero-trust device mutual TLS.'
+  },
+  {
+    id: 'event-ticketing',
+    name: 'High-Throughput Ticket Ledger',
+    targetPlatform: 'Cloud Native Web & Mobile',
+    recommendedCapabilities: ['transact', 'secure', 'operate', 'communicate'],
+    summary: 'Flash-sale queue infrastructure with distributed atomic inventory reservations, fraud scoring, and QR ticket issuance.'
   }
 ];

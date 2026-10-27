@@ -26,13 +26,13 @@ export default function ChatbotWidget({ onNavigate, theme }) {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Welcome to **Qubrix Consulting Copilot**. I'm your digital architecture assistant. Whether you're planning an enterprise Web application, a high-performance Mobile app, or an autonomous AI Enablement system, I can help you scope requirements or schedule a consultation with Bala & Srikanth. What would you like to explore?",
+      text: "👋 Welcome to **Qubrix Consulting Copilot**. I'm your digital architecture assistant. Whether you're planning an enterprise Web application, a high-performance Mobile app, or an autonomous AI Enablement system, I can help you scope requirements or schedule a consultation with Gangadhar & Srikanth. What would you like to explore?",
       quickReplies: [
         'Explore 8 Capabilities Catalogue',
         'Web Application Architecture',
         'Mobile App Engineering',
         'Enterprise AI Enablement',
-        'Who are Bala & Srikanth?',
+        'Who are Gangadhar & Srikanth?',
         'Interactive Pricing Calculator'
       ]
     }
@@ -67,20 +67,20 @@ export default function ChatbotWidget({ onNavigate, theme }) {
       let quickReplies = [];
       let navAction = null;
 
-      if (lower.includes('bala') || lower.includes('srikanth') || lower.includes('architect') || lower.includes('leadership') || lower.includes('partner') || lower.includes('team') || lower.includes('experience')) {
-        responseText = `Our consulting practice is led directly by our founding technology partners:\n\n• **Bala** (JPMorganChase & Qubrix): **14+ Years** of enterprise experience architecting ultra-low-latency distributed platforms, multi-region cloud resilience, and mission-critical financial web systems.\n\n• **Srikanth** (Evoke Technologies & Qubrix): **14+ Years** driving enterprise mobile transformations (iOS/Android/Flutter), custom LLM integrations, and developer velocity.\n\nYou work directly with Bala and Srikanth—never junior bench staff.`;
-        quickReplies = ['Schedule Call with Bala & Srikanth', 'Web Application Consulting', 'Enterprise AI Enablement'];
+      if (lower.includes('gangadhar') || lower.includes('bala') || lower.includes('srikanth') || lower.includes('architect') || lower.includes('leadership') || lower.includes('partner') || lower.includes('team') || lower.includes('experience')) {
+        responseText = `Our consulting practice is led directly by our founding technology partners:\n\n• **Gangadhar** (Reputed Financial Organization & Qubrix): **14+ Years** of enterprise experience architecting ultra-low-latency distributed platforms, multi-region cloud resilience, and mission-critical financial web systems.\n\n• **Srikanth** (Reputed IT Consulting Company & Qubrix): **14+ Years** driving enterprise mobile transformations (iOS/Android/Flutter), custom LLM integrations, and developer velocity.\n\nYou work directly with Gangadhar and Srikanth—never junior bench staff.`;
+        quickReplies = ['Schedule Call with Gangadhar & Srikanth', 'Web Application Consulting', 'Enterprise AI Enablement'];
         navAction = { label: 'View Leadership Profiles', target: 'about' };
       } else if (lower.includes('web') || lower.includes('next') || lower.includes('react') || lower.includes('frontend') || lower.includes('backend') || lower.includes('saas') || lower.includes('cloud')) {
-        responseText = `**Web Application Consulting & Architecture**:\n\n1. **Next.js 15 & React 19**: Streaming SSR, Server Components, and sub-100ms LCP.\n2. **Micro-Frontends**: Modular, independently deployable web modules for enterprise scale.\n3. **Distributed Backends**: High-throughput microservices in Go, Node.js, and Rust with Kafka and WebSockets.\n4. **Multi-Region Cloud**: Zero-downtime Kubernetes deployments on AWS/GCP with 99.99% SLA.\n\nLead Architect: **Bala** (14+ yrs, JPMorganChase).`;
+        responseText = `**Web Application Consulting & Architecture**:\n\n1. **Next.js 15 & React 19**: Streaming SSR, Server Components, and sub-100ms LCP.\n2. **Micro-Frontends**: Modular, independently deployable web modules for enterprise scale.\n3. **Distributed Backends**: High-throughput microservices in Go, Node.js, and Rust with Kafka and WebSockets.\n4. **Multi-Region Cloud**: Zero-downtime Kubernetes deployments on AWS/GCP with 99.99% SLA.\n\nLead Architect: **Gangadhar** (14+ yrs, Reputed Financial Organization).`;
         quickReplies = ['Interactive Pricing Calculator', 'Schedule Strategy Call', 'Mobile App Engineering'];
         navAction = { label: 'Explore Web Services', target: 'services' };
       } else if (lower.includes('mobile') || lower.includes('ios') || lower.includes('android') || lower.includes('react native') || lower.includes('flutter') || lower.includes('swift')) {
-        responseText = `**Mobile Application Engineering**:\n\n1. **Fluid Performance**: 60fps gesture animations on native iOS (Swift) & Android (Kotlin) or cross-platform (React Native/Flutter).\n2. **Offline-First Sync**: Local-first architecture using SQLite and WatermelonDB with zero-delay UX.\n3. **Hardware & Biometrics**: FaceID/TouchID secure enclave integration and BLE sensor telemetry.\n4. **Full Store Publication**: End-to-end App Store review compliance and automated OTA hotfixes.\n\nLead Architect: **Srikanth** (14+ yrs, Evoke Technologies).`;
+        responseText = `**Mobile Application Engineering**:\n\n1. **Fluid Performance**: 60fps gesture animations on native iOS (Swift) & Android (Kotlin) or cross-platform (React Native/Flutter).\n2. **Offline-First Sync**: Local-first architecture using SQLite and WatermelonDB with zero-delay UX.\n3. **Hardware & Biometrics**: FaceID/TouchID secure enclave integration and BLE sensor telemetry.\n4. **Full Store Publication**: End-to-end App Store review compliance and automated OTA hotfixes.\n\nLead Architect: **Srikanth** (14+ yrs, Reputed IT Consulting Company).`;
         quickReplies = ['Calculate Mobile App Cost', 'Schedule Mobile Consultation', 'Enterprise AI Enablement'];
         navAction = { label: 'Explore Mobile Engineering', target: 'services' };
       } else if (lower.includes('ai') || lower.includes('agent') || lower.includes('swarm') || lower.includes('llm') || lower.includes('rag') || lower.includes('langgraph') || lower.includes('gpt')) {
-        responseText = `**Enterprise AI Enablement & Multi-Agent Swarms**:\n\n1. **Autonomous Agent Swarms**: Multi-agent cognitive loops using LangGraph for multi-step process automation.\n2. **Enterprise GraphRAG**: Hybrid sparse-dense vector search with Qdrant/Milvus and semantic reranking.\n3. **Private On-Premise LLMs**: Containerized local deployments (Ollama/vLLM) ensuring your data never leaves your perimeter.\n4. **Deterministic Guardrails**: Automated hallucination detection, prompt injection mitigation, and continuous evals.\n\nCo-Led by **Bala & Srikanth**.`;
+        responseText = `**Enterprise AI Enablement & Multi-Agent Swarms**:\n\n1. **Autonomous Agent Swarms**: Multi-agent cognitive loops using LangGraph for multi-step process automation.\n2. **Enterprise GraphRAG**: Hybrid sparse-dense vector search with Qdrant/Milvus and semantic reranking.\n3. **Private On-Premise LLMs**: Containerized local deployments (Ollama/vLLM) ensuring your data never leaves your perimeter.\n4. **Deterministic Guardrails**: Automated hallucination detection, prompt injection mitigation, and continuous evals.\n\nCo-Led by **Gangadhar & Srikanth**.`;
         quickReplies = ['AI Readiness Audit', 'Interactive Pricing Calculator', 'Schedule AI Call'];
         navAction = { label: 'Explore AI Enablement', target: 'services' };
       } else if (lower.includes('price') || lower.includes('pricing') || lower.includes('calculator') || lower.includes('cost') || lower.includes('estimate') || lower.includes('budget') || lower.includes('storage') || lower.includes('domain') || lower.includes('maps') || lower.includes('sms')) {
@@ -92,11 +92,11 @@ export default function ChatbotWidget({ onNavigate, theme }) {
         quickReplies = ['Explore Capabilities Catalogue', 'Test AI Intelligence Swarm', 'Open Pricing Calculator'];
         navAction = { label: 'Open Capabilities Catalogue', target: 'capabilities' };
       } else if (lower.includes('contact') || lower.includes('book') || lower.includes('consult') || lower.includes('hire') || lower.includes('meeting') || lower.includes('call')) {
-        responseText = `You can easily book a **1-on-1 Strategy Consultation** directly with Bala and Srikanth. We offer complimentary 45-minute discovery sessions and provide an actionable written technical blueprint within 24 hours. We also sign NDAs upon request.`;
+        responseText = `You can easily book a **1-on-1 Strategy Consultation** directly with Gangadhar and Srikanth. We offer complimentary 45-minute discovery sessions and provide an actionable written technical blueprint within 24 hours. We also sign NDAs upon request.`;
         quickReplies = ['Schedule Architecture Call', 'Submit Detailed RFP', 'Open Pricing Calculator'];
         navAction = { label: 'Go to Consultation Booking', target: 'contact' };
       } else {
-        responseText = `I'm here to help you evaluate your technical needs across **Web Applications**, **Mobile Engineering**, or **Enterprise AI Enablement**. I can also connect you directly with Principal Architects **Bala** (JPMorganChase) & **Srikanth** (Evoke Technologies) for a scoping review!`;
+        responseText = `I'm here to help you evaluate your technical needs across **Web Applications**, **Mobile Engineering**, or **Enterprise AI Enablement**. I can also connect you directly with Principal Architects **Gangadhar** (Reputed Financial Organization) & **Srikanth** (Reputed IT Consulting Company) for a scoping review!`;
         quickReplies = [
           'Web Application Architecture',
           'Mobile App Engineering',

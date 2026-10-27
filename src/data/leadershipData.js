@@ -1,12 +1,12 @@
 export const LEADERSHIP = [
   {
     id: 'bala',
-    name: 'Bala',
-    affiliation: 'JPMorganChase & Qubrix',
+    name: 'Gangadhar',
+    affiliation: 'Reputed Financial Organization & Qubrix',
     role: 'Founding Technology Partner & Principal Cloud/Systems Architect',
     avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-    initials: 'BG',
-    bio: 'Enterprise systems specialist and lead cloud architect with 14+ years at JPMorganChase engineering ultra-low-latency distributed architectures, mission-critical financial systems, and next-gen agentic workflows.',
+    initials: 'GG',
+    bio: 'Enterprise systems specialist and lead cloud architect with 14+ years at a reputed financial organization engineering ultra-low-latency distributed architectures, mission-critical financial systems, and next-gen agentic workflows.',
     domains: [
       'Enterprise Web Architecture',
       'High-Scale Cloud Systems',
@@ -30,11 +30,11 @@ export const LEADERSHIP = [
   {
     id: 'srikanth',
     name: 'Srikanth',
-    affiliation: 'Evoke Technologies & Qubrix',
+    affiliation: 'Reputed IT Consulting Company & Qubrix',
     role: 'Founding Technology Partner & Principal AI & Digital Solutions Architect',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
     initials: 'SK',
-    bio: 'Principal Engineering Lead with 14+ years at Evoke Technologies driving modern enterprise digital transformations, cutting-edge mobile engineering, production LLM integrations, and developer velocity.',
+    bio: 'Principal Engineering Lead with 14+ years at a reputed IT consulting company driving modern enterprise digital transformations, cutting-edge mobile engineering, production LLM integrations, and developer velocity.',
     domains: [
       'Mobile App Engineering (iOS/Android)',
       'Enterprise AI Enablement & LLMs',

@@ -67,8 +67,8 @@ export default function AboutView({ setView }) {
               </p>
               <p style={{ color: 'var(--text-main)', lineHeight: 1.7, fontSize: '0.96rem', marginBottom: '24px' }}>
                 <strong>Qubrix operates on a Principal-Led model:</strong> Every system design, cloud architecture, and multi-agent AI pipeline is directed and reviewed by 
-                <strong> Bala (14+ yrs at JPMorganChase)</strong> and 
-                <strong> Srikanth (14+ yrs at Evoke Technologies)</strong>.
+                <strong> Gangadhar (14+ yrs at a reputed financial organization)</strong> and 
+                <strong> Srikanth (14+ yrs at a reputed IT consulting company)</strong>.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -244,7 +244,7 @@ export default function AboutView({ setView }) {
             Let's Engineer Your Digital Competitive Advantage
           </h2>
           <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto 30px auto', fontSize: '1.05rem' }}>
-            Connect directly with Bala and Srikanth for a complimentary 45-minute architectural review of your upcoming web, mobile, or AI product.
+            Connect directly with Gangadhar and Srikanth for a complimentary 45-minute architectural review of your upcoming web, mobile, or AI product.
           </p>
 
           <button

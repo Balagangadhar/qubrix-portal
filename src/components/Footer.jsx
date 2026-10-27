@@ -62,7 +62,7 @@ export default function Footer({ setView, theme }) {
 
             <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '20px' }}>
               Elite digital product engineering & strategic architecture partnership. 
-              Led by Bala (14+ yrs, JPMorganChase) & Srikanth (14+ yrs, Evoke Technologies). 
+              Led by Gangadhar (14+ yrs, Reputed Financial Organization) & Srikanth (14+ yrs, Reputed IT Consulting Company). 
               We architect and engineer mission-critical Web, Mobile, and Enterprise AI systems.
             </p>
 
@@ -158,7 +158,7 @@ export default function Footer({ setView, theme }) {
               Direct Consultation
             </h4>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '14px' }}>
-              Schedule a direct 45-minute architectural review with Bala (JPMC) and Srikanth (Evoke).
+              Schedule a direct 45-minute architectural review with Gangadhar and Srikanth.
             </p>
             <button
               onClick={() => handleNav('contact')}

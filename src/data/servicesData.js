@@ -69,7 +69,7 @@ export const SERVICES = [
     tagline: 'Zero-Downtime Infrastructure, FinOps & Security Hardening',
     icon: 'ShieldCheck',
     accent: '#10b981',
-    description: 'Lead architect guidance from Bala (14+ yrs JPMorganChase) on structuring resilient AWS/GCP cloud platforms, zero-trust security perimeter, automated CI/CD pipelines, and cloud cost optimization.',
+    description: 'Lead architect guidance from Gangadhar (14+ yrs Reputed Financial Organization) on structuring resilient AWS/GCP cloud platforms, zero-trust security perimeter, automated CI/CD pipelines, and cloud cost optimization.',
     features: [
       'Multi-region high-availability disaster recovery setup',
       'Zero-trust security compliance & SOC2 audit preparedness',
@@ -91,7 +91,7 @@ export const PORTFOLIO = [
     description: 'An institutional asset transaction engine featuring sub-millisecond execution times, WebSocket streaming order books, and a futuristic dark spatial trading terminal.',
     impact: 'Processes $400M+ in daily transaction volume with zero latency spikes or degradation.',
     tags: ['React 19', 'Go Microservices', 'Kafka', 'WebSocket Grid', 'AWS Multi-Region'],
-    leadConsultant: 'Bala (Lead Architect)'
+    leadConsultant: 'Gangadhar (Lead Architect)'
   },
   {
     id: 'health-mobile',
@@ -113,7 +113,7 @@ export const PORTFOLIO = [
     description: 'A network of 48 collaborating AI agents managing real-time inventory rebalancing, automated freight negotiations, and predictive anomaly triage.',
     impact: 'Reduced human dispatch interventions by 73% and accelerated shipment routing by 4x.',
     tags: ['Multi-Agent Swarm', 'LangGraph', 'FastAPI', 'Qdrant Vector DB', 'Claude API'],
-    leadConsultant: 'Bala & Srikanth (AI Architecture)'
+    leadConsultant: 'Gangadhar & Srikanth (AI Architecture)'
   },
   {
     id: 'enterprise-saas',
@@ -124,7 +124,7 @@ export const PORTFOLIO = [
     description: 'Complete architecture redesign migrating a legacy monolithic system to modular Next.js micro-frontends with embedded generative AI assistants for enterprise teams.',
     impact: 'Shortened customer onboarding time by 60% and scaled from 10k to 250k daily active enterprise users.',
     tags: ['Next.js 15', 'TypeScript', 'Node.js Microservices', 'Tailored RAG', 'Kubernetes'],
-    leadConsultant: 'Bala & Srikanth'
+    leadConsultant: 'Gangadhar & Srikanth'
   }
 ];
 

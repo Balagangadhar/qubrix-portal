@@ -15,8 +15,8 @@
    - **Web & Mobile Spatial UI/UX Design** (Design systems, micro-interactions, Figma-to-code)
 
 ### 👨‍💻 Founding Course Authors & Faculty
-- **Bala** (Lead Cloud Architect & Systems Specialist, **JPMorganChase**)
-- **Srikanth** (Principal Engineering Lead & Digital Solutions Architect, **Evoke Technologies**)
+- **Gangadhar** (Lead Cloud Architect & Systems Specialist, **Reputed Financial Organization**)
+- **Srikanth** (Principal Engineering Lead & Digital Solutions Architect, **Reputed IT Consulting Company**)
 
 ---
 

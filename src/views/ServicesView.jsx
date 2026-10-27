@@ -314,7 +314,7 @@ export default function ServicesView({ setView }) {
             Have a Specific Architecture Challenge?
           </h2>
           <p style={{ color: 'var(--text-muted)', maxWidth: '640px', margin: '0 auto 30px auto', fontSize: '1.05rem' }}>
-            Book a direct scoping session with Bala and Srikanth. We'll evaluate your system design, performance bottlenecks, or AI roadmap.
+            Book a direct scoping session with Gangadhar and Srikanth. We'll evaluate your system design, performance bottlenecks, or AI roadmap.
           </p>
 
           <button

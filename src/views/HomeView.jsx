@@ -26,49 +26,12 @@ import {
   CreditCard,
   Search,
   Box,
-  Shield,
-  Star,
-  Quote
+  Shield
 } from 'lucide-react';
 import ThreeConsultingCanvas from '../components/ThreeConsultingCanvas';
 import { LEADERSHIP } from '../data/leadershipData';
 import { SERVICES, PORTFOLIO } from '../data/servicesData';
 import { CAPABILITIES } from '../data/capabilitiesData';
-
-const CLIENT_REVIEWS = [
-  {
-    id: 1,
-    quote: "Bala & Srikanth audited our multi-region stack and identified database lockups that saved us $42k/mo and eliminated latency spikes before Black Friday.",
-    author: "Elena Rostova",
-    role: "VP of Engineering",
-    company: "FinScale Payments",
-    metric: "40% Cloud Cost Cut"
-  },
-  {
-    id: 2,
-    quote: "Shipped our HIPAA-compliant telehealth mobile app to the iOS App Store & Google Play in 7 weeks flat with 60fps smooth WebRTC video.",
-    author: "Dr. Marcus Chen",
-    role: "Chief Technology Officer",
-    company: "AuraCare Health",
-    metric: "7-Week Launch"
-  },
-  {
-    id: 3,
-    quote: "Their autonomous multi-agent swarm replaced our manual compliance reviews. Hallucinations were eliminated and throughput increased 4x.",
-    author: "Sarah Lindqvist",
-    role: "Head of Product",
-    company: "LexisAI Enterprise",
-    metric: "4x Processing Velocity"
-  },
-  {
-    id: 4,
-    quote: "Working directly with seasoned partners from JPMorgan & Evoke gave our board the technical confidence needed to close our $18M Series B.",
-    author: "David Vance",
-    role: "Founder & CEO",
-    company: "OmniLogistics Fleet",
-    metric: "99.99% Reliability"
-  }
-];
 
 export default function HomeView({ setView }) {
   const [activePillar, setActivePillar] = useState('web');
@@ -140,8 +103,8 @@ export default function HomeView({ setView }) {
               }}
             >
               Qubrix is an elite technology consulting firm led by 
-              <strong style={{ color: 'var(--text-main)' }}> Bala (14+ yrs, JPMorganChase)</strong> and 
-              <strong style={{ color: 'var(--text-main)' }}> Srikanth (14+ yrs, Evoke Technologies)</strong>. 
+              <strong style={{ color: 'var(--text-main)' }}> Gangadhar (14+ yrs, Reputed Financial Organization)</strong> and 
+              <strong style={{ color: 'var(--text-main)' }}> Srikanth (14+ yrs, Reputed IT Consulting Company)</strong>. 
               We partner with enterprise leaders and high-growth ventures to architect, engineer, and deploy high-throughput web applications, native mobile experiences, and autonomous AI systems.
             </p>
 
@@ -330,7 +293,7 @@ export default function HomeView({ setView }) {
 
             <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-                Lead: Bala (JPMorganChase)
+                Lead: Gangadhar (Reputed Financial Organization)
               </span>
               <button 
                 onClick={() => setView('services')} 
@@ -395,7 +358,7 @@ export default function HomeView({ setView }) {
 
             <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-                Lead: Srikanth (Evoke Tech)
+                Lead: Srikanth (Reputed IT Consulting Company)
               </span>
               <button 
                 onClick={() => setView('services')} 
@@ -460,7 +423,7 @@ export default function HomeView({ setView }) {
 
             <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontFamily: 'var(--font-mono)' }}>
-                Lead: Srikanth & Bala (Co-Lead)
+                Lead: Srikanth & Gangadhar (Co-Lead)
               </span>
               <button 
                 onClick={() => setView('services')} 
@@ -959,116 +922,6 @@ export default function HomeView({ setView }) {
         </div>
       </section>
 
-      {/* COMPACT VERIFIED REVIEWS & FEEDBACK STRIP (Low Real Estate) */}
-      <section className="content-section" style={{ marginBottom: '60px' }}>
-        <div 
-          className="glass-panel" 
-          style={{ 
-            padding: '22px 26px', 
-            borderRadius: '20px', 
-            background: 'rgba(255, 255, 255, 0.02)',
-            border: '1px solid var(--border-glass)'
-          }}
-        >
-          {/* Header Bar */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', gap: '2px' }}>
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={13} fill="#facc15" color="#facc15" />
-                ))}
-              </div>
-              <span style={{ fontSize: '0.92rem', fontWeight: 800, color: 'var(--text-main)', fontFamily: 'var(--font-heading)' }}>
-                Client Reviews & Engineering Feedback
-              </span>
-              <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
-                (4.9/5 from 40+ Production Deployments)
-              </span>
-            </div>
-
-            <div style={{ fontSize: '0.74rem', color: 'var(--cyan-core)', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
-              ✓ 100% Principal-Led Delivery
-            </div>
-          </div>
-
-          {/* Compact 4-Card Responsive Grid */}
-          <div 
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', 
-              gap: '12px' 
-            }}
-          >
-            {CLIENT_REVIEWS.map((rev) => (
-              <div 
-                key={rev.id}
-                style={{ 
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid var(--border-glass)',
-                  borderRadius: '12px',
-                  padding: '12px 14px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-glow)';
-                  e.currentTarget.style.background = 'rgba(0, 242, 254, 0.04)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-glass)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                }}
-              >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                    <div style={{ display: 'flex', gap: '2px' }}>
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={10} fill="#facc15" color="#facc15" />
-                      ))}
-                    </div>
-                    <span 
-                      style={{ 
-                        fontSize: '0.66rem', 
-                        padding: '2px 6px', 
-                        borderRadius: '4px', 
-                        background: 'rgba(0, 242, 254, 0.12)', 
-                        color: 'var(--cyan-core)', 
-                        fontWeight: 700 
-                      }}
-                    >
-                      {rev.metric}
-                    </span>
-                  </div>
-
-                  <p style={{ 
-                    fontSize: '0.78rem', 
-                    color: 'var(--text-main)', 
-                    lineHeight: 1.45, 
-                    marginBottom: '10px',
-                    fontStyle: 'italic'
-                  }}>
-                    "{rev.quote}"
-                  </p>
-                </div>
-
-                <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div>
-                    <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--text-main)' }}>
-                      {rev.author}
-                    </span>
-                    <div style={{ fontSize: '0.68rem', color: 'var(--text-dim)' }}>
-                      {rev.role} • <strong style={{ color: 'var(--text-muted)' }}>{rev.company}</strong>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* QUICK HOMEPAGE REQUIREMENT SCOPING BANNER */}
       <section className="content-section" style={{ marginBottom: '80px' }}>
         <div 
@@ -1088,7 +941,7 @@ export default function HomeView({ setView }) {
             Ready to Scope Your Next <span className="gradient-text">Digital Product</span>?
           </h2>
           <p style={{ color: 'var(--text-muted)', maxWidth: '680px', margin: '0 auto 36px auto', fontSize: '1.1rem' }}>
-            Schedule a high-impact architectural scoping session with Bala and Srikanth. 
+            Schedule a high-impact architectural scoping session with Gangadhar and Srikanth. 
             We analyze your requirements, review existing bottlenecks, and deliver an actionable technical blueprint within 24 hours.
           </p>
 

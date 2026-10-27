@@ -31,7 +31,7 @@ export default function ContactView({ selectedScopeForBooking }) {
     email: '',
     company: '',
     consultingDomain: 'Web Application Consulting',
-    preferredConsultant: 'Both Bala & Srikanth (Recommended)',
+    preferredConsultant: 'Both Gangadhar & Srikanth (Recommended)',
     preferredDate: '',
     preferredTime: '10:00 AM IST / 12:30 PM EST',
     projectScope: ''
@@ -99,11 +99,11 @@ export default function ContactView({ selectedScopeForBooking }) {
   const faqs = [
     {
       q: 'How does an initial consultation with Qubrix work?',
-      a: 'We schedule a focused 45-minute architectural discovery session directly with Bala and/or Srikanth. We discuss your business objectives, current tech stack, performance or scale challenges, and target milestones. Within 24 hours, we deliver a written Architectural Scope Blueprint.'
+      a: 'We schedule a focused 45-minute architectural discovery session directly with Gangadhar and/or Srikanth. We discuss your business objectives, current tech stack, performance or scale challenges, and target milestones. Within 24 hours, we deliver a written Architectural Scope Blueprint.'
     },
     {
-      q: 'Will I speak directly with Bala and Srikanth or a sales rep?',
-      a: 'You speak directly with Bala (Lead Cloud & Systems Architect, 14+ yrs at JPMorganChase) and Srikanth (Principal Digital Architect, 14+ yrs at Evoke Technologies). We do not employ sales reps or account gatekeepers.'
+      q: 'Will I speak directly with Gangadhar and Srikanth or a sales rep?',
+      a: 'You speak directly with Gangadhar (Lead Cloud & Systems Architect, 14+ yrs at a reputed financial organization) and Srikanth (Principal Digital Architect, 14+ yrs at a reputed IT consulting company). We do not employ sales reps or account gatekeepers.'
     },
     {
       q: 'Do you execute mutual Non-Disclosure Agreements (NDAs)?',
@@ -132,7 +132,7 @@ export default function ContactView({ selectedScopeForBooking }) {
           Consult With Our <span className="gradient-text">Principal Architects</span>
         </h1>
         <p style={{ color: 'var(--text-muted)', maxWidth: '760px', margin: '0 auto', fontSize: '1.12rem', lineHeight: 1.6 }}>
-          Connect directly with Bala and Srikanth to discuss your Web Application, Mobile Engineering, or Enterprise AI requirements. 
+          Connect directly with Gangadhar and Srikanth to discuss your Web Application, Mobile Engineering, or Enterprise AI requirements. 
           Receive an actionable technical blueprint within 24 hours.
         </p>
 
@@ -219,7 +219,7 @@ export default function ContactView({ selectedScopeForBooking }) {
               </h2>
 
               <p style={{ color: 'var(--text-muted)', fontSize: '1rem', maxWidth: '600px', margin: '0 auto 24px auto', lineHeight: 1.6 }}>
-                Your request has been routed directly to <strong style={{ color: '#fff' }}>Bala & Srikanth</strong>. 
+                Your request has been routed directly to <strong style={{ color: '#fff' }}>Gangadhar & Srikanth</strong>. 
                 Our team will review your requirement brief and follow up with a calendar invitation and initial architectural considerations within 24 hours.
               </p>
 
@@ -380,9 +380,9 @@ export default function ContactView({ selectedScopeForBooking }) {
                           outline: 'none'
                         }}
                       >
-                        <option value="Both Bala & Srikanth (Recommended)">Both Bala & Srikanth (Full Architecture + AI Pod)</option>
-                        <option value="Bala (Lead Cloud Architect, JPMorganChase)">Bala — Lead Cloud & Distributed Systems Architect</option>
-                        <option value="Srikanth (Principal AI & Digital Solutions, Evoke)">Srikanth — Principal Mobile & AI Solutions Architect</option>
+                        <option value="Both Gangadhar & Srikanth (Recommended)">Both Gangadhar & Srikanth (Full Architecture + AI Pod)</option>
+                        <option value="Gangadhar (Lead Cloud Architect, Reputed Financial Organization)">Gangadhar — Lead Cloud & Distributed Systems Architect</option>
+                        <option value="Srikanth (Principal AI & Digital Solutions, Reputed IT Consulting Company)">Srikanth — Principal Mobile & AI Solutions Architect</option>
                       </select>
                     </div>
 
@@ -450,7 +450,7 @@ export default function ContactView({ selectedScopeForBooking }) {
                       <span>Scheduling Strategy Call...</span>
                     ) : (
                       <>
-                        <span>Confirm Consultation with Bala & Srikanth</span>
+                        <span>Confirm Consultation with Gangadhar & Srikanth</span>
                         <ArrowRight size={16} />
                       </>
                     )}

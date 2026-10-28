@@ -11,7 +11,8 @@ import {
   Sun, 
   Moon,
   Calendar,
-  Sliders
+  Sliders,
+  Mail
 } from 'lucide-react';
 
 export default function Navbar({ currentView, setView, theme, toggleTheme }) {
@@ -236,6 +237,32 @@ export default function Navbar({ currentView, setView, theme, toggleTheme }) {
             )}
           </button>
 
+          {/* Executive Direct Email Capsule (Desktop wide) */}
+          <a
+            href="mailto:contactus@qubrixconsulting.com?subject=Consulting%20Inquiry%20-%20Qubrix"
+            className="nav-email-desktop"
+            title="Direct Email: contactus@qubrixconsulting.com"
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '7px 14px',
+              borderRadius: '999px',
+              background: 'rgba(0, 242, 254, 0.06)',
+              border: '1px solid rgba(0, 242, 254, 0.3)',
+              color: 'var(--cyan-core)',
+              fontSize: '0.8rem',
+              fontFamily: 'var(--font-mono)',
+              fontWeight: 700,
+              textDecoration: 'none',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            <Mail size={13} />
+            <span>contactus@qubrixconsulting.com</span>
+          </a>
+
           {/* Primary CTA (Desktop only) */}
           <button
             onClick={() => handleNavClick('contact')}
@@ -305,6 +332,30 @@ export default function Navbar({ currentView, setView, theme, toggleTheme }) {
             <ArrowRight size={16} />
           </button>
 
+          {/* Mobile Drawer Direct Email Pill */}
+          <a
+            href="mailto:contactus@qubrixconsulting.com?subject=Consulting%20Inquiry%20-%20Qubrix"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '11px 16px',
+              borderRadius: '12px',
+              background: 'rgba(0, 242, 254, 0.08)',
+              border: '1px solid rgba(0, 242, 254, 0.3)',
+              color: 'var(--cyan-core)',
+              fontSize: '0.86rem',
+              fontFamily: 'var(--font-mono)',
+              textDecoration: 'none',
+              fontWeight: 700,
+              justifyContent: 'center',
+              marginBottom: '12px'
+            }}
+          >
+            <Mail size={15} />
+            <span>contactus@qubrixconsulting.com</span>
+          </a>
+
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (
@@ -350,6 +401,11 @@ export default function Navbar({ currentView, setView, theme, toggleTheme }) {
       )}
 
       <style>{`
+        @media (min-width: 1200px) {
+          .nav-email-desktop {
+            display: inline-flex !important;
+          }
+        }
         @media (min-width: 960px) {
           .desktop-nav {
             display: flex !important;

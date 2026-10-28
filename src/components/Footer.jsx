@@ -1,7 +1,15 @@
-import React from 'react';
-import { Shield, ArrowUpRight, Sparkles, Heart, Globe, Cpu, Smartphone, Layers, Lock, Calendar } from 'lucide-react';
+import React, { useState } from 'react';
+import { Shield, ArrowUpRight, Sparkles, Heart, Globe, Cpu, Smartphone, Layers, Lock, Calendar, Mail, Copy, Check } from 'lucide-react';
 
 export default function Footer({ setView, theme }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contactus@qubrixconsulting.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const handleNav = (viewId) => {
     setView(viewId);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -154,12 +162,54 @@ export default function Footer({ setView, theme }) {
           {/* Column 4: Leadership & Direct Contact */}
           <div>
             <h4 style={{ fontSize: '0.98rem', color: 'var(--text-main)', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Calendar size={16} color="#10b981" />
-              Direct Consultation
+              <Mail size={16} color="var(--cyan-core)" />
+              Direct Executive Contact
             </h4>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '14px' }}>
-              Schedule a direct 45-minute architectural review with Gangadhar and Srikanth.
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '12px' }}>
+              Connect directly with Gangadhar & Srikanth for systems architecture, mobile, and AI advisory.
             </p>
+
+            <div
+              style={{
+                padding: '10px 12px',
+                borderRadius: '10px',
+                background: 'rgba(0, 242, 254, 0.05)',
+                border: '1px solid rgba(0, 242, 254, 0.2)',
+                marginBottom: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}
+            >
+              <a
+                href="mailto:contactus@qubrixconsulting.com?subject=Consulting%20Inquiry%20-%20Qubrix"
+                style={{
+                  fontSize: '0.8rem',
+                  color: 'var(--cyan-core)',
+                  fontFamily: 'var(--font-mono)',
+                  fontWeight: 700,
+                  textDecoration: 'none'
+                }}
+              >
+                contactus@qubrixconsulting.com
+              </a>
+              <button
+                onClick={handleCopyEmail}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: copied ? '#10b981' : 'var(--text-dim)',
+                  cursor: 'pointer',
+                  padding: '2px',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+                title="Copy email address"
+              >
+                {copied ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
+              </button>
+            </div>
+
             <button
               onClick={() => handleNav('contact')}
               className="btn-primary"
@@ -171,7 +221,7 @@ export default function Footer({ setView, theme }) {
                 marginBottom: '14px'
               }}
             >
-              <span>Schedule Architecture Review</span>
+              <span>Smart Consultation & Dispatcher</span>
             </button>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.74rem', color: 'var(--text-dim)' }}>
               <Lock size={12} color="#10b981" />

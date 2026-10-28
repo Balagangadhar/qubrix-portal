@@ -757,18 +757,42 @@ export default function HomeView({ setView }) {
               <div>
                 {/* Header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '18px', marginBottom: '20px' }}>
-                  <img
-                    src={leader.avatar}
-                    alt={leader.name}
-                    style={{
-                      width: '74px',
-                      height: '74px',
-                      borderRadius: '18px',
-                      objectFit: 'cover',
-                      border: '2px solid var(--cyan-core)',
-                      boxShadow: '0 0 20px rgba(0, 242, 254, 0.25)'
-                    }}
-                  />
+                  {leader.avatar ? (
+                    <img
+                      src={leader.avatar}
+                      alt={leader.name}
+                      style={{
+                        width: '74px',
+                        height: '74px',
+                        borderRadius: '18px',
+                        objectFit: 'cover',
+                        border: '2px solid var(--cyan-core)',
+                        boxShadow: '0 0 20px rgba(0, 242, 254, 0.25)'
+                      }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '74px',
+                        height: '74px',
+                        minWidth: '74px',
+                        borderRadius: '18px',
+                        background: 'linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(121, 40, 202, 0.25) 100%)',
+                        border: '2px solid var(--cyan-core)',
+                        boxShadow: '0 0 25px rgba(0, 242, 254, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.1)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontFamily: 'var(--font-heading)',
+                        fontSize: '1.65rem',
+                        fontWeight: 900,
+                        color: 'var(--cyan-core)',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      {leader.initials}
+                    </div>
+                  )}
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                       <h3 style={{ fontSize: '1.45rem', color: 'var(--text-main)', margin: 0 }}>
@@ -794,7 +818,7 @@ export default function HomeView({ setView }) {
                   </div>
                 </div>
 
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px' }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '20px', whiteSpace: 'pre-line' }}>
                   {leader.bio}
                 </p>
 

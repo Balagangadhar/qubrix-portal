@@ -2,11 +2,10 @@ export const LEADERSHIP = [
   {
     id: 'bala',
     name: 'Gangadhar',
-    affiliation: 'Reputed Financial Organization & Qubrix',
+    affiliation: 'Global Investment Banking & Qubrix',
     role: 'Founding Technology Partner & Principal Cloud/Systems Architect',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
     initials: 'GG',
-    bio: 'Enterprise systems specialist and lead cloud architect with 14+ years at a reputed financial organization engineering ultra-low-latency distributed architectures, mission-critical financial systems, and next-gen agentic workflows.',
+    bio: 'Building scalable web, mobile, and AI applications, backed by deep experience architecting enterprise-grade systems in global investment banking.',
     domains: [
       'Enterprise Web Architecture',
       'High-Scale Cloud Systems',
@@ -32,9 +31,8 @@ export const LEADERSHIP = [
     name: 'Srikanth',
     affiliation: 'Reputed IT Consulting Company & Qubrix',
     role: 'Founding Technology Partner & Principal AI & Digital Solutions Architect',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
     initials: 'SK',
-    bio: 'Principal Engineering Lead with 14+ years at a reputed IT consulting company driving modern enterprise digital transformations, cutting-edge mobile engineering, production LLM integrations, and developer velocity.',
+    bio: '14+ Years in Enterprise Software Engineering\n\nExperienced in architecting and delivering scalable digital solutions, modernizing enterprise applications, and transforming complex business requirements into production-ready software.',
     domains: [
       'Mobile App Engineering (iOS/Android)',
       'Enterprise AI Enablement & LLMs',
